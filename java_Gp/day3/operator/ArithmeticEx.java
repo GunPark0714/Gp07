@@ -20,3 +20,19 @@ public class ArithmeticEx {
 	}
 
 }
+
+/*성적을 입력받아 입력받은 성적이 60점이상 이상인지 확인하는 코드를 작성하세요
+
+예 : input score :
+	
+	65
+	
+    do you pass 65 points? true
+    
+    input score :
+    
+    45
+
+    do you pass 45 points? false 
+
+*/
