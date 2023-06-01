@@ -15,10 +15,14 @@ public class ex2_if {
 		 *Are you a women? woman
 		 */
 
-		
-	 char gender;
+     char gender;
 	 Scanner sc = new Scanner(System.in);
 	 System.out.println("input gender");
-	
+	 gender = sc.next().charAt(0);
+	 
+	 if(gender == 'M') {System.out.println( "Are you a women?" +  "man" );}
+	 if(gender != 'M') {System.out.println( "Are you a women?"  + "women");}
+	 
+	 sc.close();
 	}
 }
