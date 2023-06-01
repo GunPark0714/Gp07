@@ -19,6 +19,6 @@ public class ex2_if {
 	 char gender;
 	 Scanner sc = new Scanner(System.in);
 	 System.out.println("input gender");
-	 
+	
 	}
 }
