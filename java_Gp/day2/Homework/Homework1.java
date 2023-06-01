@@ -11,7 +11,17 @@ public class Homework1
     Scanner sc = new Scanner(System.in);
     
     System.out.println("정수2개와 문자(산술연산자)를 입력하세요");
-    String str1 = sc.nextLine();
-    System.out.println(str1);
+    int num1, num2; 
+    char operator;
+
+    num1 = sc.nextInt();
+    operator = sc.next().charAt(0);
+    num2 = sc.nextInt();
+    System.out.println("" + num1 + operator + num2);
+    
+    sc.close();
+  
+    
+    
   }
 }
