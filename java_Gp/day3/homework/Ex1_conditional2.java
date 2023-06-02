@@ -2,7 +2,7 @@
 package day3.homework;
 
 import java.util.Scanner;
-public class Ex1_conditional {
+public class Ex1_conditional2 {
 
 	public static void main(String[] args) {
 		/* input gender :
@@ -16,9 +16,9 @@ public class Ex1_conditional {
 
 		Scanner sc = new Scanner(System.in);
 		System.out.println( "input gender :" );
-		char gender;
-		gender = sc.next().charAt(0);
-		boolean result = gender == 'W' ? true : false;
+		String gender;
+		gender = sc.next();
+		boolean result = gender.equals("W") ? true : false;
 		System.out.println(" Are you a women?" + result);
 	
 	
