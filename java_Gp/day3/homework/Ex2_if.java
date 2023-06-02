@@ -19,10 +19,18 @@ public class Ex2_if {
 	 Scanner sc = new Scanner(System.in);
 	 System.out.println("input gender");
 	 gender = sc.next().charAt(0);
-	 
-	 if(gender == 'M') {System.out.println( "Are you a women?" +  "man" );}
-	 if(gender == 'W') {System.out.println( "Are you a women?"  + "women");}
+	 String result = "";
+	 //gender가 M과 같다
+	 if(gender == 'M')
+		 // {System.out.println( "Are you a women?" +  "man" );}
+		 result = "man";
+	 //gender가 W와 같다
+	 if(gender == 'W')
+		 // {System.out.println( "Are you a women?"  + "women");}
+		 result = "women";
+	 System.out.println("Are you a women?" + result);
 	 
 	 sc.close();
+	
 	}
 }
