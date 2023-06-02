@@ -3,8 +3,10 @@ package day4.homework;
 public class MaxEx {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+		/* 두 정수를 입력받아 큰 수를 출력하는 코드를 작성
+		 * 
+		 */
 	}
+	
 
 }
