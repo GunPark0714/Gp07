@@ -25,6 +25,13 @@ public class IfSeasonEx {
 		else if(month == 12 || month == 1 || month == 2){System.out.println( "winter" );}
 		else {System.out.println( "잘못된 월" );}
 		
+		//월이 3이상이고 5이하이면 봄이라고 출력하고
+		if(month >= 3 && month <= 5) {System.out.println( " spring ");}
+		else if(month >= 6 && month <= 8) {System.out.println( " summer ");}
+		else if(month >= 9 && month <= 11) {System.out.println( " fall ");}
+		else if(month == 12 || (month >=1 && month <= 2)) {System.out.println( "winter ");}
+		else {System.out.println( "잘못된 월" );}
+		
 		
 		sc.close();
 
