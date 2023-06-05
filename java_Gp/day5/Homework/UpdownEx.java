@@ -13,23 +13,32 @@ public class UpdownEx {
 		 * input : 45
 		 * Good!
 		 */
-	
-		int i, num;
+		 
+ 	    int min = 1; 
+	    int max = 100;
+		       
+		int random = (int)(Math.random() * (max - min + 1) + min);
 		Scanner sc = new Scanner(System.in);
-	    System.out.println( "input number" );
+	    System.out.println( random );
+	    
+	    System.out.println( "input number");
+	    int i;
 	    i = sc.nextInt();
 	    
-	    while ( i == num) {System.out.println( "input number" );}
-	    	
+		while ( i != random) {  
+ 	    	System.out.println( "input number" );
 	    
-	        if ( i < num){System.out.println( "Down!");}
-	    	else if ( i > num) {System.out.println( "Up!");}
-	    	else if ( i == num) {System.out.println( "Good!");}
+	  
+	    	if ( i < random) {System.out.println( "Down!");}
+	    	else if ( i > random) {System.out.println( "Up!");}
+	    	else if ( i == random) {System.out.println( "Good!");}
+	 	    	
+	    
 	        
-	    	
-	    	}
-	    	
-	    
+	        
+	        sc.close();    
 	}
-
+	}
 }
+
+
