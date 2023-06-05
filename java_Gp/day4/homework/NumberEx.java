@@ -9,13 +9,16 @@ public class NumberEx {
 		 * num을 출력하는 코드를 작성하세요.
 		 */
 		
-	 int num;
+		
+	//정수 입력
+		
+     int num;
 	 Scanner sc = new Scanner(System.in);
 	 System.out.println( "Input number : ");
 	 num = sc.nextInt();
 	 
-	 if(num % 2 == 0){System.out.println( num / 2);}
-	 else {System.out.println( num + 1 );}
+	 if(num % 2 == 0){System.out.println( num / 2);} //num /= 2;
+	 else {System.out.println( num + 1 );} //num = num + 1; num += 1;
 	 
 	 sc.close();
 	 
