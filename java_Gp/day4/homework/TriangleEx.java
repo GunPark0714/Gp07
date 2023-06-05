@@ -30,7 +30,10 @@ public class TriangleEx {
 		
 		else {System.out.println("impossible");}
 		
-		    
+		/* int a, b, c;
+		   int max; //세변 a,b,c중 가장 큰 변의 길이
+		   Scanner sc = new Scanner(System.in);
+		 */ 
 		
 		sc.close();
 		
