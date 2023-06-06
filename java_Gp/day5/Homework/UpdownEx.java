@@ -18,27 +18,26 @@ public class UpdownEx {
 	    int max = 100;
 		       
 		int random = (int)(Math.random() * (max - min + 1) + min);
+		int i = 0;
 		Scanner sc = new Scanner(System.in);
 	    System.out.println( random );
 	    
-	    System.out.println( "input number");
-	    int i;
-	    i = sc.nextInt();
 	    
 		while ( i != random) {  
- 	    	System.out.println( "input number" );
-	    
+ 	   
+			System.out.println( "input number");}
+		
+		i = sc.nextInt();
 	  
-	    	if ( i < random) {System.out.println( "Down!");}
-	    	else if ( i > random) {System.out.println( "Up!");}
-	    	else if ( i == random) {System.out.println( "Good!");}
-	 	    	
-	    
-	        
-	        
-	        sc.close();    
-	}
-	}
+	    	if ( i < random) System.out.println( "Down!");
+	    	else if ( i > random) System.out.println( "Up!");
+	    	else if ( i == random) System.out.println( "Good!");
+	    	}
 }
+	        
+	
+
+
+
 
 
