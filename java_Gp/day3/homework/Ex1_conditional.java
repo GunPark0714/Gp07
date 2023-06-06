@@ -20,9 +20,11 @@ public class Ex1_conditional {
 		gender = sc.next().charAt(0);
 		boolean result = gender == 'W' ? true : false;
 		System.out.println(" Are you a women?" + result);
+//<<<<<<< Updated upstream
 	
 	
 	    sc.close();
-	}	    
-}	
-	
+
+		
+		sc.close();
+	}}
