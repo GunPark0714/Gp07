@@ -21,16 +21,17 @@ public class DisjointEx {
 		num2 = sc.nextInt();
 		
 		for (i = 1; i <= num1; i++) {
-			    if (  num1 % i == 0 &&  num2 % i == 0 )
+			if (  num1 % i == 0 &&  num2 % i == 0 )
 			
-			    count++;	
-		        }
+			count++;	
+	        }
 		
-			    if(count < 2 ) {System.out.println( "disJoint!");
-			    }
-			    else {System.out.println("not disjoint!");
-			    }
+			if(count >= 2 ) {System.out.println( "not disJoint!");
+		    }
+		    else {System.out.println("disjoint!");
+			    
+		    }
 
-               sc.close();
+            sc.close();
 	}
 }
