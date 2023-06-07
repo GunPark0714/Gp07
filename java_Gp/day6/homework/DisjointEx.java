@@ -13,10 +13,22 @@ public class DisjointEx {
 
 		int num1, num2;
 		int i = 1;
-		int gcd;
+		int count = 0;
 
 		Scanner sc = new Scanner(System.in);
+		{System.out.println( " input 2 numbers : ");}
+		num1 = sc.nextInt();
+		num2 = sc.nextInt();
+		
+		for (i = 1; i < num1; i++) {
+			if (  (num1 % i == 0 && num2 % i == 0) )
+			{
+			count++;	
+		  }
+		}
+			if(count <= 2) {System.out.println( " Not disJoint!");}
+			else {System.out.println(" disjoint!");}
 
 	}
+	}
 
-}
