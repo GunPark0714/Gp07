@@ -30,7 +30,7 @@ public class GCDEx {
 		while ( i <= num1) {
 	         if ( num1 % i == 0 && num2 % i == 0) {gcd = i;}
 			
-	         ++i;}
+	         }
         
 		System.out.println( num1 + " and " + num2 + " gcd : " + gcd);
 		
