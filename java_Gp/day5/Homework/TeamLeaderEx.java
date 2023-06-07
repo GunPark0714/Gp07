@@ -22,6 +22,7 @@ public class TeamLeaderEx {
         		
 		switch(num){ case 3,6,9,12,15,18,21,24,27,30 : System.out.println( num  +  " is a team leader!");
 		       break;
+		// switch(num % 3) case 0 : System.out.println( num  +  " is a team leader!");
 		default : System.out.println( num  +  " is a member of the team!");
 		}
 		
