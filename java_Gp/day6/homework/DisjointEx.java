@@ -34,4 +34,27 @@ public class DisjointEx {
 
             sc.close();
 	}
-}
+    }
+        /*int i = 1;
+		int num1, num2;
+		int gcd = 1;
+		Scanner sc = new Scanner(System.in);
+		{System.out.println( " input 2 numbers : ");}
+		num1 = sc.nextInt();
+		num2 = sc.nextInt();
+
+		//반복문 (최대공약수를 구하기 위한) : i가 num1까지
+
+
+		while ( i <= num1) {
+     	if ( num1 % i == 0 && num2 % i == 0) {gcd = i;}
+	
+     	}
+
+		System.out.println( num1 + " and " + num2 + " gcd : " + gcd);
+        복문 종료 후 : gcd가 1이면 Disjoint를 출력하고, 아니면 Not disjoint를 출력 
+              
+         
+		sc.close();
+		*/
+		
