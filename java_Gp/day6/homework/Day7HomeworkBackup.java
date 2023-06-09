@@ -11,7 +11,7 @@ public class Day7HomeworkBackup {
 				System.out.print("*");
 			}System.out.println();
 		}
-		for (int i = 4; 1 > 0; i--) {
+		for (int i = 4; 1 > 0; i++) {
 			for(int j = 0; j<5-i; j++) {
 				System.out.print(" ");
 			}
