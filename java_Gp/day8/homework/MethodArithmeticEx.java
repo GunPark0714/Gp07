@@ -31,11 +31,12 @@ public class MethodArithmeticEx {
 	}
 	    public static int getArithmetic(char ch) {
 		
-	    	if (ch == '+') {return sum;}
-	    	else if (ch == '-') {return sub;}
-	    	else if (ch == '*') {return mul;}
-	    	else if (ch == '/') {return div;}
-	    	else if (ch == '%') {return mod;}
+	    	if (ch == '+') {int sum = 0;return sum;}
+	    	else if (ch == '-') {int sub = 0; return sub;}
+	    	else if (ch == '*') {int mul = 0; return mul;}
+	    	else if (ch == '/') {int div = 0; return div;}
+	    	else if (ch == '%') {int mod = 0; return mod;}
+			return ch;
     }
 	    	
 		
