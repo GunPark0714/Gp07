@@ -10,10 +10,30 @@ public class MethodArithmeticEx {
 		 * 0으로 나누는 일은 없다고 가정.
 		 */
 		
+		Scanner sc = new Scanner(System.in);
+		System.out.println( "input 2 nums and arithmetic operator : ");
 		
+		int num1, num2;
+		char ch;
+		num1 = sc.nextInt();
+		num2 = sc.nextInt();
+		ch = sc.next().charAt(0);
+		int sum = num1 + num2;
+		getArithmetic(ch);
+		sc.close();
+	}
+	
+  
+    }
+	    	
+		
+	
+
+		
+	
 	  
+	}	
 		
-		
-	}}
+	}
 	
 
