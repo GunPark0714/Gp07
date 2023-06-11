@@ -19,11 +19,23 @@ public class MethodArithmeticEx {
 		num2 = sc.nextInt();
 		ch = sc.next().charAt(0);
 		int sum = num1 + num2;
-		getArithmetic(ch);
+		int sub = num1 - num2;
+		int mul = num1 * num2;
+		int div = num1 / num2;
+		int mod = num1 & num2;
+		int result = getArithmetic(ch);
+		
+		System.out.println( result + "is" + getArithmetic(ch));
+		
 		sc.close();
 	}
-	
-  
+	    public static int getArithmetic(char ch) {
+		
+	    	if (ch == '+') {return sum;}
+	    	else if (ch == '-') {return sub;}
+	    	else if (ch == '*') {return mul;}
+	    	else if (ch == '/') {return div;}
+	    	else if (ch == '%') {return mod;}
     }
 	    	
 		
@@ -33,7 +45,5 @@ public class MethodArithmeticEx {
 	
 	  
 	}	
-		
-	}
 	
 
