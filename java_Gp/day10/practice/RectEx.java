@@ -104,7 +104,16 @@ class Rect2{
 		leftUp.move(x, y);
 		rightDown.move(x+w, y+h);
 	
-				
+		===========main ==========
+		System.out.println( " R2 Start!");
+		Rect2 r = new Rect2(new Point(0,0), new Point(10,10));
+		r2.print();
+		r2.move(10,10);
+		r2.print();
+		r2.resize(10,10,20,20);
+		r2.print();
+		r2.resize(0, 0, 30, 30);
+		r2.print();
 		*/		
 	}
 	
