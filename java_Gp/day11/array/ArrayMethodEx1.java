@@ -46,11 +46,27 @@ public class ArrayMethodEx1 {
 		//매개변수로 넘겨준 배열의 주소가 아닌 배열의 값이 메서드 안에서 바뀌면
 		//원본이 영향을 받음
 		swap2(arr1, arr2);
+		System.out.println("===============");
 		printArr(arr1);
 		printArr(arr2);
+		
+		System.out.println("===============");
+		int arr3[] = {1,2,3,4};
+		printArr(arr3);
+		test1(arr3);
+		printArr(arr3);
+		
+
+		System.out.println("===============");
+		int arr4[] = {1,2,3,4};
+		printArr(arr4);
+		test1(arr4);
+		printArr(arr4);
 	
 	}
     public static void test1(int arr[]) {
+    	//기존 배열을 버리고 새로운 배열을 만듬
+    	//=> main에서 연결되었던 배열과 연결이 끊김
     	arr = new int [4];
     	arr[0] = 3;
     }
