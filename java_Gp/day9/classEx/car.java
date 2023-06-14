@@ -37,7 +37,7 @@ public class car {
 	 * 리턴타입 : 없음 => void
 	 * 메서드명 : speedChange
 	 * */
-	public void speedChagne(boolean positive) {
+	public void speedChange(boolean positive) {
 		//전원이 꺼져있으면 종료
 		if(!power) {
 			return;
