@@ -11,8 +11,5 @@ public class BaseballGameEx {
 		 * 3O : 일치하는 숫자가 하나도 없음
 		 */
 		
-		Scanner sc = new Scanner(System.in);
 		
-	}
-
-}
+	}}
