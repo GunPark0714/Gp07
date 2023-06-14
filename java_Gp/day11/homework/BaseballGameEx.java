@@ -25,49 +25,51 @@ public class BaseballGameEx {
         		checkanswer[random] = true;
         	}
 		}
-		for(int i = 0; i<3;i++)
+		for(int i = 0; i<3;i++) {
 			System.out.println(answer[i]);
 					
 		
-		
-		int[]guess=new int[3];
+		}
+		int str = 0;
+		int ball = 0;
+		int out = 0;
+		while(str <= 3) {
+		int[]guess = new int[3];
 		Scanner sc = new Scanner(System.in);
 		System.out.println(" input 3 numbers");
 		for(int i = 0; i<3; i++) {
 			guess[i] = sc.nextInt();
 			
 		}
-		int str = 0;
-		int ball = 0;
-		int out = 0;
 		
 		
-		while(str == 3) {
-		}
+		
+
+		
 		for(int i = 0; i<3; i++) {
 			for(int j = 0; j<3; j++) {
 				if(answer[i] == guess[j]) {
-				    if(i != j) {
-				    	out++;
-				    	System.out.println("out!");
-				    }
-				    else if(i == j) {
+				    
+				    
+				    if(i == j) {
 						str++;
-						System.out.println(" strike :" + str + "," + "ball : " + ball );
+						
 					}	
-					else ball++;
-				    System.out.println(" strike :" + str + "," + "ball : " + ball );
+			        else ball++;
+				    
 					}
-				}
 			}
-		
+		}
+		if(ball == 0 && str == 0) {System.out.println( "out!");}
+		System.out.println(" strike :" + str + "," + "ball : " + ball );
 		if(str==3) {System.out.println(" Player win!");
+		break;
 		}
 		
-			else {System.out.println("input 3 numbers");		
+			else{		
 			}
 		}
 	}
-		
+}		
 		
 	
