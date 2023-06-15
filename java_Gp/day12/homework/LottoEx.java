@@ -28,6 +28,7 @@ public class LottoEx {
 		Array.printArray(DrawNum);//주석처리 
 		System.out.println(DrawNum[6] + " is bonus number");
 	    
+	    
 		do { 
 			// 사용자가 숫자 6개를 입력
 			System.out.println("user : ");
@@ -37,7 +38,6 @@ public class LottoEx {
 			//판별
 	
 		winning = winning(DrawNum,UserNum);
-		System.out.println(winning);
 		} while( winning < 6);	
 		System.out.println("congratulations!");
 	}
