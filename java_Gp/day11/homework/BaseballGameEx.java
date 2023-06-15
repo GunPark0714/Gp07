@@ -26,14 +26,15 @@ public class BaseballGameEx {
         	}
 		}
 		for(int i = 0; i<3;i++) {
-			System.out.println(answer[i]);
+			//System.out.println(answer[i]);
 					
 		
 		}
 		int str = 0;
 		int ball = 0;
 		int out = 0;
-		while(str <= 3) {
+		
+		while(str < 3) {
 		int[]guess = new int[3];
 		Scanner sc = new Scanner(System.in);
 		System.out.println(" input 3 numbers");
@@ -61,15 +62,13 @@ public class BaseballGameEx {
 			}
 		}
 		if(ball == 0 && str == 0) {System.out.println( "out!");}
-		System.out.println(" strike :" + str + "," + "ball : " + ball );
-		if(str==3) {System.out.println(" Player win!");
+			else {System.out.println(" strike :" + str + "," + "ball : " + ball );
+			}
+		if (str==3) {System.out.println(" Player win!");
 		break;
 		}
-		
-			else{		
-			}
-		}
 	}
-}		
+	}
+}
 		
 	
