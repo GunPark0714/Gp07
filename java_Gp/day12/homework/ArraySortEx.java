@@ -1,6 +1,7 @@
 package day12.homework;
 
 import java.util.Arrays;
+import java.util.Comparator;
 
 import array.Array;
 
@@ -22,7 +23,7 @@ public class ArraySortEx {
 		}  
 		Integer arr2[] = {1,4,7,9,2,8,3,6};
 		Arrays.sort(arr2);//오름차순
-		Arrays.sort(arr2, Comparator.reverseorder()); //내림차순
+		Arrays.sort(arr2, Comparator.reverseOrder()); //내림차순
 	    for(Integer tmp : arr2) {
 	    	System.out.println(tmp + " ");
 	    }
