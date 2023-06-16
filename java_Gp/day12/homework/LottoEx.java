@@ -28,7 +28,7 @@ public class LottoEx {
 		Array.printArray(DrawNum);//주석처리 
 		System.out.println(DrawNum[6] + " is bonus number");
 	 
-		printResult(winning, winning2, winningb);
+
 	    
 		
 		do { 
@@ -39,16 +39,18 @@ public class LottoEx {
 		}
 			//판별
 	
-		winning = winning(DrawNum,UserNum);
+			printResult(winning, winning2, winningb);
 		
-		} while( winning < 6 || winning2 < 6);	
+		} while( winning + winning2 < 6);	
 		System.out.println("congratulations!");
+		
 	}
 	    /** 당첨된 로또번호와 보너스 번호를 판별하는 메서드
 	     * 매개변수 : 두 배열 int arr1[], int arr2[]
 	     * 리턴타입 : 같은 숫자가 몇개 있는지 -> 몇개 -> 정수 -> int
 	     * 메서드명 : winning
 	     */
+		
 	public static int winning(int arr1[],int arr2[]) {
 		if(arr1 == null || arr2 == null){//예외처리 
 				return 0;	
@@ -74,8 +76,9 @@ public class LottoEx {
 				if(i == j) {
 					continue;
 				}
-				if(arr1[i] == arr2[i]) {
+				if(arr1[i] == arr2[j]) {
 					count++;
+				
 				}
 			}
    		}
@@ -93,8 +96,9 @@ public class LottoEx {
 		}
 			return count;
 	}
+	
+			
 	public static void printResult(int winning, int winning2,int winningb){
-
 	   if(winning + winning2 == 3) {
 		   System.out.println("division5");
 	   }
@@ -117,7 +121,7 @@ public class LottoEx {
 	   }
 	
 	}
-
+        
 
 
 
