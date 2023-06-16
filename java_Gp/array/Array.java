@@ -95,7 +95,7 @@ public class Array {
 	 * 메서드명 : Sort
 	 * *
 	 */
-	public void sort(int arr[]) {
+	public static void sort(int arr[]) {
 		if(arr == null)
 			return;
 	}
