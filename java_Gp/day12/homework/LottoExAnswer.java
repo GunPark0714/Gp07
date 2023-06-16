@@ -37,6 +37,10 @@ public class LottoExAnswer {
 		for(int i = 0; i<user.length; i++) {
 			user[i] = sc.nextInt();
 		}
+		if(Array.arrayCheck(user)) {
+			System.out.println("Wrong number!");
+			return;
+		}
 		
 		int count = count(lotto2, user);
 		printResult(count, Array.contains(user, bonus, user.length));
