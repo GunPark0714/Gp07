@@ -20,6 +20,7 @@ public class LottoExAnswer {
 		int lotto2[] = new int[6]; //마지막 한개 보너스로, 앞에 6개는 로또번호
 		int bonus = lotto[6];
 		int min = 1; int max = 45;
+		Array.sort(lotto2);
  		
 		
 		
