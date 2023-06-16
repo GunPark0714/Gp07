@@ -12,7 +12,7 @@ public class LottoEx {
 		//맞춰야할 숫자 6개를 랜덤으로 생성 + 보너스 1개 숫자(중복X)
 		//반복문
 		//사용자가 숫자 6개를 입력
-		//판별
+		//등수 판별
 		
 		int DrawNum[] = new int[7]; //랜덤으로 생성된 로또 번호 저장할 배열
 		int	UserNum[] = new int[6]; //사용자가 입력한 로또 번호 저장할 배열
@@ -27,8 +27,10 @@ public class LottoEx {
 		arr = Array.createRandomArray(1, 45, DrawNum);
 		Array.printArray(DrawNum);//주석처리 
 		System.out.println(DrawNum[6] + " is bonus number");
+	 
+		printResult(winning, winning2, winningb);
 	    
-	    
+		
 		do { 
 			// 사용자가 숫자 6개를 입력
 			System.out.println("user : ");
@@ -38,7 +40,8 @@ public class LottoEx {
 			//판별
 	
 		winning = winning(DrawNum,UserNum);
-		} while( winning < 6);	
+		
+		} while( winning < 6 || winning2 < 6);	
 		System.out.println("congratulations!");
 	}
 	    /** 당첨된 로또번호와 보너스 번호를 판별하는 메서드
