@@ -14,6 +14,8 @@ public class LottoEx {
 		//사용자가 숫자 6개를 입력
 		//판별
 		
+	  
+		
 		int DrawNum[] = new int[7]; //랜덤으로 생성된 로또 번호 저장할 배열
 		int	UserNum[] = new int[6]; //사용자가 입력한 로또 번호 저장할 배열
 		int min = 1; int max = 45;
@@ -28,15 +30,15 @@ public class LottoEx {
 		Array.printArray(DrawNum);//주석처리 
 		System.out.println(DrawNum[6] + " is bonus number");
 	    
-	    
 		do { 
 			// 사용자가 숫자 6개를 입력
 			System.out.println("user : ");
 			for(int i = 0; i<UserNum.length; i++) {
 				UserNum[i] = sc.nextInt();
+			    
 		}
 			//판별
-	
+		 
 		winning = winning(DrawNum,UserNum);
 		} while( winning < 6);	
 		System.out.println("congratulations!");
