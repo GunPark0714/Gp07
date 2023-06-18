@@ -12,7 +12,7 @@ public class LottoEx {
 		//맞춰야할 숫자 6개를 랜덤으로 생성 + 보너스 1개 숫자(중복X)
 		//반복문
 		//사용자가 숫자 6개를 입력
-		//판별
+		//등수 판별
 		
 	  
 		
@@ -29,7 +29,13 @@ public class LottoEx {
 		arr = Array.createRandomArray(1, 45, DrawNum);
 		Array.printArray(DrawNum);//주석처리 
 		System.out.println(DrawNum[6] + " is bonus number");
+	 
+
 	    
+<<<<<<< HEAD
+=======
+		
+>>>>>>> 6fa752d98f868d982ef012a80e8f54928f151b36
 		do { 
 			// 사용자가 숫자 6개를 입력
 			System.out.println("user : ");
@@ -38,16 +44,25 @@ public class LottoEx {
 			    
 		}
 			//판별
+<<<<<<< HEAD
 		 
 		winning = winning(DrawNum,UserNum);
 		} while( winning < 6);	
+=======
+	
+			printResult(winning, winning2, winningb);
+		
+		} while( winning + winning2 < 6);	
+>>>>>>> 6fa752d98f868d982ef012a80e8f54928f151b36
 		System.out.println("congratulations!");
+		
 	}
 	    /** 당첨된 로또번호와 보너스 번호를 판별하는 메서드
 	     * 매개변수 : 두 배열 int arr1[], int arr2[]
 	     * 리턴타입 : 같은 숫자가 몇개 있는지 -> 몇개 -> 정수 -> int
 	     * 메서드명 : winning
 	     */
+		
 	public static int winning(int arr1[],int arr2[]) {
 		if(arr1 == null || arr2 == null){//예외처리 
 				return 0;	
@@ -73,8 +88,9 @@ public class LottoEx {
 				if(i == j) {
 					continue;
 				}
-				if(arr1[i] == arr2[i]) {
+				if(arr1[i] == arr2[j]) {
 					count++;
+				
 				}
 			}
    		}
@@ -92,8 +108,9 @@ public class LottoEx {
 		}
 			return count;
 	}
+	
+			
 	public static void printResult(int winning, int winning2,int winningb){
-
 	   if(winning + winning2 == 3) {
 		   System.out.println("division5");
 	   }
@@ -116,7 +133,7 @@ public class LottoEx {
 	   }
 	
 	}
-
+        
 
 
 
