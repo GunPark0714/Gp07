@@ -18,7 +18,7 @@ public class WordIndiTraining {
 			this.meaning[0] = meaning;
 				meaningCount++;
 		}
-		public word2 
+		
 		
 		
 	}
