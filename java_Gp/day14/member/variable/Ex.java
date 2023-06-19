@@ -14,7 +14,8 @@ public class Ex {
 		
 		TestA a = new TestA();
 		System.out.println(a.num);
-		
+		TestB b = new TestB();
+		System.out.println(b.num2);
 	}
 
 }
@@ -34,4 +35,20 @@ class TestA{
 	static {
 		num2 = 2;
 	}
+}
+class TestB{
+	int num2 = 1;
+	{
+		num2 = 2;
+	}
+	public TestB() {
+		num2 = 3;
+	}
+	
+	static int num3 = 1;
+	
+	static {
+		num3 = 2;
+	}
+	
 }
