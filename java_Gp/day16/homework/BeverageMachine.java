@@ -19,10 +19,13 @@ public class BeverageMachine {
 		
 			menu = sc.nextInt();
 			runMenu(menu);
+		}while(menu != EXIT);
+		System.out.println("프로그램 종료!!");
+	}
 	
-}
 
-	private static void printMenu() {
+
+	private void printMenu() {
 		System.out.println("==============");
 		System.out.println("메뉴 : " );
 		System.out.println("1. 금액 투입 ");
@@ -32,7 +35,7 @@ public class BeverageMachine {
 		System.out.print("메뉴 선택 : ");
 		
 	}
-	private static void runMenu() {
+	private void runMenu(int menu) {
 		System.out.println("=============");
 		switch(menu) {
 		case 1 : 
@@ -48,10 +51,17 @@ public class BeverageMachine {
 			break;
 		default;
 			System.out.println("잘못된 메뉴선택!!");
-}
-
 		
+		}
 
+	}
+	
+	private void insertmoney() {
+		System.out.println(" 투입된 금액 : ");
+		
+	private void selectmenu() {
+		
+		
 	}
 
 }
