@@ -1,7 +1,7 @@
 package day16.homework;
 
 
-public class BeverageMachineRun {
+public class Run {
 
 	public static void main(String[] args) {
 		BeverageMachine beverageMachine = new BeverageMachine();
