@@ -24,6 +24,10 @@ public class Customer {
 		generateCustomerId();//customerId 발급이 완료.
 	}
 
+	public Customer(Customer customer) {
+		// TODO Auto-generated constructor stub
+	}
+
 	private void generateCustomerId() {
 		//1 => 00001
 		//1 => "1"
