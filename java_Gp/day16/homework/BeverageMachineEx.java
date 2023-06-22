@@ -1,12 +1,12 @@
-package day16.homework;
+
+package day16.homework.machine.controller;
 
 import java.util.Scanner;
 
-import day16.homework.Beverage;
-
+import day16.homework.machine.vo.Beverage;
 
 public class BeverageMachine {
-	
+
 	private Scanner sc = new Scanner(System.in);
 	private Beverage list[] = new Beverage[3];
 	
@@ -152,8 +152,5 @@ public class BeverageMachine {
 	}
 }
 
-
-
-	
 
 
