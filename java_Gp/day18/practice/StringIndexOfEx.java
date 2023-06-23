@@ -21,6 +21,8 @@ public class StringIndexOfEx {
 		}while(index != -1);
 		//개수를 출력
 		System.out.println(str + " : " + search + " : " + count);
+	
+		
 		
 		
 
