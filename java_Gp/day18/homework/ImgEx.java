@@ -17,7 +17,7 @@ public class ImgEx {
 		System.out.println("input : ");
 		String file = sc.next();
 	
-		String regex = "^[a-zA-Z\\.jpg|bmp|png]$";
+		String regex = "^a-zA-Z\\.(jpg|bmp|png)$";
 
 		boolean result = Pattern.matches(regex, file);
 			if (result = true) {
