@@ -3,9 +3,7 @@ package day16.homework.machine.controller;
 
 import java.util.Scanner;
 
-import day16.homework.machine.vo.Beverage;
-
-public class BeverageMachine {
+public class BeverageMachineEx {
 
 	private Scanner sc = new Scanner(System.in);
 	private Beverage list[] = new Beverage[3];
@@ -17,7 +15,7 @@ public class BeverageMachine {
 	private final static int FANTA = 2;
 	private final static int EXIT = 4;
 	
-	public BeverageMachine() {
+	public BeverageMachineEx() {
 		list[COKE] = new Beverage("콜라", 1200, 10);
 		list[SPRITE] = new Beverage("사이다", 1100, 10);
 		list[FANTA] = new Beverage("환타", 1000, 10);
