@@ -1,10 +1,8 @@
-package day18.homework;
+package day18.controller;
 
-import java.util.Scanner;
+public class ImgEx {
 
-public class ImgEx implements Run{
-	
-	private Scanner sc = new Scanner(System.in);
+private Scanner sc = new Scanner(System.in);
 	
 	private final static int EXIT = 2;
 	
@@ -80,5 +78,5 @@ public class ImgEx implements Run{
 		}
 		return false;
 	}
-	
 }
+
