@@ -1,9 +1,14 @@
 package day20.homework.run;
 
-public class Run {
+import day20.homework.controller.VocabularyNoteController;
 
-	public static void main(String[] args) {
+public class Run {
 	
+	
+	public static void main(String[] args) {
+		VocabularyNoteController controller = new VocabularyNoteController();
+		controller.run();
 	}
 
 }
+
