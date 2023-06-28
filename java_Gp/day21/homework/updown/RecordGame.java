@@ -1,4 +1,4 @@
-package day21.practice.vo;
+package day21.homework.updown;
 
 import lombok.Data;
 
@@ -12,11 +12,7 @@ public class RecordGame {
 		this.id = id;
 		this.count = count;
 	}
-	public void ScoreRank(int count) {
-		this.count = count;
-	}
 	
-
 	@Override
 	public String toString() {
 		return "[" + id + " : " + count + "]";

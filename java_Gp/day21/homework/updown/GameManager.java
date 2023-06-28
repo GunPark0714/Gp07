@@ -1,4 +1,4 @@
-package day21.practice.controller;
+package day21.homework.updown;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -34,7 +34,6 @@ public class GameManager implements Program {
 	}       
 
 	//기록을 저장하는 리스트
-	private ArrayList<ScoreRank> list2 = new ArrayList<>()
 	private ArrayList<RecordGame> list = new ArrayList<>();
 	@Override
 	public void printMenu() {
@@ -88,24 +87,24 @@ public class GameManager implements Program {
 	}
 	//기록 : 아이디(입력), 플레이 횟수
 	//아이디 입력
+		System.out.print("Record ID : ");
+		String id = sc.next();
 		//어떻게 저장해서 관리할 건가?
-		ScoreRank rec2 = new ScoreRank(count);
-		list2.add(rec2);
+		RecordGame rec = new RecordGame(id, count);
+		list.add(rec);
 		//sort();
-		list2.sort(new Comparator<ScoreRank>() {
+		list.sort(new Comparator<RecordGame>() {
 
 			@Override
-			public int compare(ScoreRank o1, ScoreRank o2) {
+			public int compare(RecordGame o1, RecordGame o2) {
 				return o1.getCount() - o2.getCount();
 			}
 		});
-	
-			System.out.print("Record ID : ");
-			String id = sc.next();
 	}
 	private void sort() {
-		for(int i = 0; i<list.size()-1; i++) {
-			for(int j = 0; j<list.size()-1; j++) {
+		for(int i = 0; i<4
+				; i++) {
+			for(int j = 0; j<4; j++) {
 				if(list.get(j).getCount()>list.get(j+1).getCount()) {
 					RecordGame tmp = list.get(j);
 					list.set(j, list.get(j+1));

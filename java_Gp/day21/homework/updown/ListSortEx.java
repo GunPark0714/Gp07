@@ -1,4 +1,4 @@
-package day21.practice;
+package day21.homework.updown;
 
 import java.util.ArrayList;
 import java.util.Comparator;
