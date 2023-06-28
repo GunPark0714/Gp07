@@ -1,5 +1,6 @@
 package day5.Homework;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 public class UpdownEx {
 
@@ -20,7 +21,7 @@ public class UpdownEx {
 		
  	    int min = 1, max = 100; 
 		int num = min - 1; //1~100이 아닌 정수로 초기화 하면 됨. 최소값 -1을 해서 랜덤으로 나올 수 없는 수
-	    
+		ArrayList<Integer> list = new ArrayList<>();
 		       
 		int random = (int)(Math.random() * (max - min + 1) + min);
 		Scanner sc = new Scanner(System.in);
@@ -42,10 +43,9 @@ public class UpdownEx {
 
 	    
 	    sc.close();
-	    	}
-
+	}
+		
 }
-	
 
 
 
