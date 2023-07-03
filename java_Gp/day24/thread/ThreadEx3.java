@@ -8,7 +8,9 @@ public class ThreadEx3 {
 				System.out.println(" - ");
 				}
 			});
-			thread.start();
+			thread.start(); //새로운 쓰레드를 만들고, 만들어진 쓰레드에 run()을 실행 
+			//thread.run(); //멀티 쓰레드가 아닌 싱글 쓰레드가 됨. main쓰레드위에서 run()을 실행
+			
 			for(int i = 0; i<10; i++) {
 				System.out.println(" + ");
 			}
