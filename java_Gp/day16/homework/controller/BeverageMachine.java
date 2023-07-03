@@ -1,10 +1,11 @@
-
-package day16.homework.machine.controller;
+package day16.homework.controller;
 
 import java.util.Scanner;
 
-public class BeverageMachineEx {
+import day16.homework.vo.Beverage;
 
+public class BeverageMachine {
+	
 	private Scanner sc = new Scanner(System.in);
 	private Beverage list[] = new Beverage[3];
 	
@@ -15,7 +16,7 @@ public class BeverageMachineEx {
 	private final static int FANTA = 2;
 	private final static int EXIT = 4;
 	
-	public BeverageMachineEx() {
+	public BeverageMachine() {
 		list[COKE] = new Beverage("콜라", 1200, 10);
 		list[SPRITE] = new Beverage("사이다", 1100, 10);
 		list[FANTA] = new Beverage("환타", 1000, 10);
@@ -150,5 +151,8 @@ public class BeverageMachineEx {
 	}
 }
 
+
+
+	
 
 

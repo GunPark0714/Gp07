@@ -1,4 +1,4 @@
-package day16.homework;
+package day16.homework.vo;
 
 import lombok.Data;
 import lombok.AllArgsConstructor; //모든 멤버를 매개변수로 하는 생성자 추가
@@ -15,7 +15,8 @@ import lombok.AllArgsConstructor; //모든 멤버를 매개변수로 하는 생�
 		 * 음료선택 1 -> 사이다를 선택했습니다. -> 사이다가 나옵니다[금액이 충분한 경우] -> 잔돈 xxx가 나옵니다.
 		 * -> 금액이 부족합니다 [금액이 부족한 경우] -> 잔돈 xxx가 나옵니다.
 		 */
-	
+	@Data
+	@AllArgsConstructor
 	public class Beverage {
 			private String name;
 			private int price;
