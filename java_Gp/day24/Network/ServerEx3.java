@@ -17,24 +17,16 @@ public class ServerEx3 {
 			while(true) {
 				//3. 연결 대기 후 요청이 오면 수락
 				Socket socket = serverSocekt.accept();
+				//연결한 클라이언트와 읽고 쓰기를 함
+				//서버와 클라이언트의 기능이 다르면 SERVER클래스를 추가해서
+				//아래부분을 client가 아닌 Server로 수정
 				//4. 작업
-				//4-1. 서버에서 클라이언트로 전송하는 스레드 생성 및 실행
-				Thread sendThread = new Thread(()->{
-					Scanner sc = new Scanner(System.in);
+				Client client = new Client(socket);
+				//read()/send()순서 중요하지 않음. 어차피 스레드를 이용해서
+				client.read();
+				client.send();
+			}
 					
-					try{
-						//서버에서 클라이언트로 전송하는 작업을 무한히 반복. socket 연결이 끊길때까지
-						//=> 클라이언트가 접속 종료를 할 때까지
-						while(true){
-							//콘솔에서 입력
-							String str = sc.nextLine();
-							//입력받은 문자열을 전송하기 위해 byte로 변환
-							byte [] bytes = str.getBytes();
-							OutputStream os = socket.getOutputStream();
-							//변환된 byte들을 전송
-							os.write(bytes);
-							os.flush();
-						}
 					} catch (IOException e) {
 						e.printStackTrace();
 					}
