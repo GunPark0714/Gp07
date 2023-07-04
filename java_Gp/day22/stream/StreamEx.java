@@ -31,3 +31,11 @@ public class StreamEx {
 	}
 
 }
+	Public static void main(String[]args){
+		List<Integer> list = new ArrayList<>();
+		list.add(3);
+		list.add((int)4);
+		list.add((Integer)5);
+		
+}
+		
