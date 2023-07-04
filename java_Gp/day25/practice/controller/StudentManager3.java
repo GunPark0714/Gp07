@@ -1,11 +1,16 @@
 package day25.practice.controller;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 import day25.practice.vo.Student;
 import day25.practice.vo.StudentList;
-public class StudentManager3 implements Program{
+public class StudentManager3 implements Program3{
 	
 	/*학생 관리 프로그램을 작성하세요.
 	 * 기능 : 학생 등록, 학생 확인, 종료
@@ -134,9 +139,31 @@ public class StudentManager3 implements Program{
 				 System.out.println("학생 검색 실패");
 			}
 		}
-	}		
-	
+	@Override
+	public void load() {
+		try (FileInputStream fis = new FileInputStream("Student_book");
+				ObjectInputStream ois = new ObjectInputStream(fis)){
 
+					sl = (StudentList)ois.readObject();
+					
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void save() {
+		try(FileOutputStream fos = new FileOutputStream("Student_book");
+			ObjectOutputStream oos = new ObjectOutputStream(fos)){
+				oos.writeObject(fos);
+
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+	}
+}
 		
 		
 		
