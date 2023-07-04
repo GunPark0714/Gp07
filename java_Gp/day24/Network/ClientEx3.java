@@ -17,31 +17,12 @@ public class ClientEx3 {
 			//3. 서버에게(IP,post) 연결 요청
 			socket.connect(new InetSocketAddress(ip,port));
 			
-			Thread sendThread = new Thread(()->{
-				Scanner sc = new Scanner(System.in);
-				
-				try{
-					while(true){
-						String str = sc.nextLine();
-						byte [] bytes = str.getBytes();
-						OutputStream os = socket.getOutputStream();
-						os.write(bytes);
-						os.flush();
-					}
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			});
-			sendThread.start();
-			Thread readThread = new Thread(()->{
-				try {
-					InputStream is = socket.getInputStream();
-					while(true) {
-						byte [] bytes = new byte[1024];
-						is.read(bytes);
-						String str = new String(bytes);
-						System.out.println("server : " + str);
-					}
+			try {
+				socket.connect(new InetSocketAddress(ip,port));
+				//연결이 완료되면, 읽기/쓰기 기능을 실행
+				Client client = new Client(socket);
+				client.read();
+				clinet.send();
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
