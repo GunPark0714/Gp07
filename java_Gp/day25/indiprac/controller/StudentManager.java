@@ -1,5 +1,12 @@
 package day25.indiprac.controller;
 
+import java.io.EOFException;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -28,6 +35,7 @@ public class StudentManager implements Program{
 		@Override
 		public void run() {
 			int menu;
+			load();
 			do {
 				System.out.println("==============");
 				printmenu();
@@ -35,7 +43,47 @@ public class StudentManager implements Program{
 				runmenu(menu);
 				System.out.println("==============");
 			}while(menu != EXIT);
+			save();
+			
+					
 		}
+		private void save(String fileName) {
+			//학생 정보를 저장 => 리스트 => 하나씩 꺼내서 저장 
+			//저장 => OutputStream
+			//객체단위로 저장 => ObjectOutputStream
+			try(
+					FileOutputStream fos = new FileOutputStream(fileName);
+					ObjectOutputStream oos = new ObjectOutputStream(fos)){
+						for(Student tmp : list) {
+							oos.writeObject(tmp);
+						}
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+		}
+		private void load(String fileName() {
+			//학생 정보를 출력
+		
+		try(ObjectInputStream ois 
+				= new ObjectInputStream(fileName())){
+				while(true) {
+					Student tmp = (Student)ois.readObject();
+					list.add(tmp);
+				}
+		}
+		} catch (FileNotFoundException e) {
+			System.out.println("불러올 파일이 없습니다");
+		} catch (EOFException e) {
+			System.out.println("불러오기 완료");
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			//ObjectInputStream을 이용하여 객체단위로 읽어올 떄 클래스가 Serialiazable 인터페이스를 
+			//구현하지 않으면 발생 
+			System.out.println("Student 클래스를 찾을 수 없습니다.");
+		} 
+	}
+
 		@Override
 		public void runmenu(int menu) {
 			switch(menu) {
