@@ -17,6 +17,24 @@ import day26.library.teacher.vo.LoanBrowsing;
 
 public class LibraryController {
 	
+
+import java.io.EOFException;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Scanner;
+
+import day26.library.vo.Book;
+import day26.library.vo.LoanBrowsing;
+
+public class LibraryController {
+	
 	private Scanner sc = new Scanner(System.in);
 	//도서 리스트
 	List<Book> bookList = new ArrayList<>();
@@ -26,7 +44,9 @@ public class LibraryController {
 	public void run() {
 		int menu;
 		String bookFileName = "src/day26/library/book.txt";
+		String loanFileName = "src/day26/library/loan.txt";
 		loadBook(bookFileName);
+		loadLoan(loanFileName);
 		do {
 			//메뉴 출력
 			System.out.println("=============");
@@ -39,9 +59,39 @@ public class LibraryController {
 			
 		}while(menu != 4);
 		saveBook(bookFileName);
+		saveLoan(loanFileName);
 		sc.close();
 	}
 
+	private void saveLoan(String fileName) {
+		try(FileOutputStream fos = new FileOutputStream(fileName);
+			ObjectOutputStream oos = new ObjectOutputStream(fos)){
+				for(LoanBrowsing tmp : loanList) {
+					oos.writeObject(tmp);
+				}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	private void loadLoan(String fileName) {
+		try(ObjectInputStream ois 
+			= new ObjectInputStream(new FileInputStream(fileName))){
+			while(true) {
+				LoanBrowsing tmp = (LoanBrowsing)ois.readObject();
+				loanList.add(tmp);
+			}
+		} catch (FileNotFoundException e) {
+			System.out.println("불러올 파일이 없습니다.");
+		} catch (EOFException e) {
+			System.out.println("불러오기 완료!");
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			//ObjectInputStream을 이용하여 객체단위로 읽어올 때 클래스가 Serializable인터페이스를 구현하지 않으면 발생 
+			System.out.println("LoanBrowsing 클래스를 찾을 수 없습니다.");
+		} 
+	}
+	
 	private void saveBook(String fileName) {
 		try(FileOutputStream fos = new FileOutputStream(fileName);
 			ObjectOutputStream oos = new ObjectOutputStream(fos)){
@@ -82,7 +132,7 @@ public class LibraryController {
 			loanBook();
 			break;
 		case 3:
-			returnBook();
+			retrunBook();
 			break;
 		case 4:
 			System.out.println("프로그램 종료!");
@@ -93,26 +143,32 @@ public class LibraryController {
 		
 	}
 
-	private void returnBook() {
-		sc.nextLine();//이전에 입력한 엔터 처리
-		System.out.print("도서 번호 : "); //도서번호 입력
+	private void retrunBook() {
+		//엔터 처리
+		sc.nextLine();
+		//반납도서 번호를 입력
+		System.out.print("도서 번호 : ");
 		String num = sc.nextLine();
+		//대출한 도서가 아니면 반납을 X
+		int index = bookList.indexOf(new Book(num, null, null, null));
+		if(index == -1) {
+			System.out.println("대출한 도서가 아닙니다.");
+			return;
+		}
+		//맞으면 반납
+		//반납한 도서의 상태를 대출 가능으로 수정
+		Book returnBook = bookList.get(index);
+		returnBook.returnBook();
 		
-		boolean possible //반납 신청
-			= bookList
-			.stream()
-			.filter(b->b.isLoan()&&b.getNum().equals(num)) //대출과는 반대로 대출된 책만 가능
-			.count()<0;   
-			if(!possible) { //대출이 안됬으면
- 				System.out.println("반납할 수 없는 책입니다."); //반납 불가능
-				return;
-			}
-			int index = bookList.indexOf(new Book(num, null, null, null));
-			Date returnDate = new Date();
-			LoanBrowsing lb 
-				= new LoanBrowsing(bookList.get(index), returnDate, 14);
+		//대출열람 리스트에서 대출한 도서에 반납일을 오늘날짜로 수정
+		//반납한 도서의 대출 열람을 찾아야 함.
+		int lbIndex = loanList.lastIndexOf(new LoanBrowsing(returnBook, null, 14));
+		LoanBrowsing tmpLb = loanList.get(lbIndex);
+		tmpLb.setReturnDate(new Date());
+		System.out.println("대출일 : " + tmpLb.getLoanDateStr());
+		System.out.println("반납일 : " + tmpLb.getReturnDateStr());
 	}
-		
+
 	private void loanBook() {
 		//대출 가능한 도서들을 조회
 		//Stream<Book> stream = bookList.stream();
@@ -155,17 +211,18 @@ public class LibraryController {
 			return;
 		}
 		//올바르면 대출을 진행
-		//도서 대출 객체를 생성. 도서, 반납일, 대출기간
+		//도서 대출 객체를 생성. 도서, 대출일, 대출기간
 		int index = bookList.indexOf(new Book(num, null, null, null));
 		Date loanDate = new Date();
 		LoanBrowsing lb 
-			= new LoanBrowsing(bookList.get(index), loanDate, 14);
-		//대출열람리스트에 반납일 더해서 추가
-		loanList.remove(lb);
-		bookList.remove(index).loanBook();//대출목록에서 삭제
+			= new LoanBrowsing(bookList.get(index) , loanDate , 14);
+		//대출열람 리스트에 추가
+		loanList.add(lb);
+		bookList.get(index).loanBook();//도서에 대출했다고 수정
 		//대출일을 출력
 		System.out.println("대출일 : " + lb.getLoanDateStr());
 		//반납예정일 출력
+		System.out.println("반납일 : " + lb.getEstimatedDateStr());
 	}
 
 	private void insertBook() {
@@ -182,6 +239,12 @@ public class LibraryController {
 		
 		//입력 정보를 이용하여 도서 객체를 생성
 		Book book = new Book(num, title, author, isbn);
+		
+		//도서 번호 중복 체크
+		if(bookList.contains(book)) {
+			System.out.println("이미 등록된 도서 번호입니다. 확인해주세요.");
+			return;
+		}
 		
 		//도서 리스트에 도서 객체를 추가
 		bookList.add(book);
