@@ -179,7 +179,7 @@ public class BookManager implements Program{
 		boolean posssible 
 			= bookList
 			.stream()
-			.filter(b->!b.isLoan&&b.getNum().euqals(num))
+			.filter(b->!b.isLoan&&b.getNum().equals(num))
 			.count() > 0;
 			
 		//올바르지 않으면(없는 도서번호이거나, 대출중인 도서인 경우)
@@ -201,22 +201,15 @@ public class BookManager implements Program{
 		//반납예정일 출력
 		
 		//
-		pb.print(s->s.getnum().contains(num));
-			System.out.println("도서 대출 정보 조회 성공 : " + );
-		
+	}		
 		
 		
 }
 	   
-	private void bookreturn() {
-		// TODO Auto-generated method stub
-		
-	}
 	private void bookrental() {
 		//대출 가능한 도서들을 조회
 		Stream<T> <Book> stream = Book.stream();
 		stream.filter(b->!b.isLoan()).foreach(b->{ //대여가 안된 책들
-		sys
 		}
 		//도서 번호를 입력
 		//대출을 신청
