@@ -64,8 +64,9 @@ public class ShopManager implements Program{
 				break;
 		default : System.out.println("wrong input");
 		}
-		
 	}
+
+
 	private void inputCustomer() {
 		System.out.println("고객 등록");
 		sc.nextLine();
