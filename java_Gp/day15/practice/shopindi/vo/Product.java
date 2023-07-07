@@ -1,10 +1,16 @@
 package day15.practice.shopindi.vo;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+@AllArgsConstructor
+@Data
 public class Product {
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+		
+			private	String name;
+			private	String company;
+			private	String price;
+			private	String type;
+				
 	}
 
-}
