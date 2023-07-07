@@ -1,8 +1,15 @@
 package day11.homework;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import array.Array;
+import day11.homework.Baseball.vo.Baseballresult;
 
 public class BaseballGameAnswer {
 
@@ -13,6 +20,7 @@ public class BaseballGameAnswer {
 		int min = 1, max = 9;
 		int strike = 0;//스트라이크 개수
 		int ball = 0;//볼의 개수
+		List<Baseballresult>list2 = new ArrayList<>();
 		Scanner sc = new Scanner(System.in);
 		
 		
@@ -21,8 +29,9 @@ public class BaseballGameAnswer {
 		//Array.printArray(com);//나중에 주석 처리
 		
 		// 반복문
-		do {
+		do { 
 			// 사용자가 숫자 3개를 입력
+			load();
 			System.out.print("user : ");
 			for(int i = 0; i<user.length; i++) {
 				user[i] = sc.nextInt();
@@ -45,7 +54,35 @@ public class BaseballGameAnswer {
 		}while(strike < 3);
 		
 		System.out.println("Good!");
+		save();
 		sc.close();
+	}
+
+	private static void save() {
+		File file = new File("BaseballGame");
+		try {
+			if(!file.exists() && file.getName().contains(".")) {
+				file.createNewFile();				
+				System.out.println("Created File!");
+			}
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		try(FileOutputStream fos = new FileOutputStream(fileName);
+				ObjectOutputStream oos = new ObjectOutputStream(fos)){
+				oos.writeObject(book);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}	
+		
+	
+
+	private static void load() {
+		// TODO Auto-generated method stub
+		
 	}
 
 	/**스트라이크 개수를 판별하는 메서드
@@ -120,6 +157,8 @@ public class BaseballGameAnswer {
 		}
 		if(strike == 0 && ball == 0) {
 			System.out.print("3O");
+			
+	
 		}
 		System.out.println();
 	}
