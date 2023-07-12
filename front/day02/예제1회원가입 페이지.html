@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<form action="" method="post">
+		<strong><span style="color: black;"><h2>회원가입에 오신걸 환영합니다.</h2></span></strong>
+		<br><br>
+<fieldset>
+		<Legend><strong><span style="color: rgb(0, 0, 0);">회원 정보 </strong></span></Legend> <br>
+		<label>아이디 :
+		<input type="text" name="아이디" placeholder="공백없이 입력하세요" required>
+		</label><br>
+		<label>
+		비밀번호 : 
+	<input type="password" name="비밀번호" placeholder="비밀번호를 입력하세요"required> 
+		</label><br>
+		<label>비밀번호 확인 :
+	<input type="password" name="비밀번호 확인" placeholder="비밀번호를 다시 입력하세요" autofocus maxlength="10" required>
+		</label><br>
+		<label>이름 :
+	<input type="text" name="이름" placeholder="이름을 입력하세요" required>
+		</label><br>
+	  성별 : 
+		<label for="gender"></label> 
+		<select id="gender" required>
+			<option value="" >----  	</option>
+			<option value="Male">남자	</option>
+			<option value="Female">여자	</option>
+		</select><br>
+		<label>이메일 :
+	<input type="email" name="email" placeholder="이메일을 입력하세요" required> 
+		<label><br>
+		<label>전화번호 :
+	<input type="tel" name="tel" placeholder="-를 제외한 번호를 입력하세요" pattern="\d{11}"> 
+		</label><br>
+</fieldset>
+<fieldset>
+	<legend><strong><span style="color: rgb(0, 0, 0);">이벤트와 새로운 소식 </strong></span></legend>
+	<input type="radio" name="이벤트 수신여부" value="동의"> 메일수신
+	<input type="radio" name="이벤트 수신여부" value="미동의" checked> 메일 수신 안함
+</fieldset>	
+<fieldset>
+	<legend><strong>개인정보이용 동의</strong></legend>
+	<input type="radio" name="약관동의여부" value="동의" required checked> 동의 
+	<input type="radio" name="약관동의여부" value="동의"> 미동의
+</fieldset>
+	<submit><button> <u> 회원가입 </u> </button> <br>
+	<input type="reset" name="리셋">
+	</form>
+</body>
+</html>
+&nbsp;
