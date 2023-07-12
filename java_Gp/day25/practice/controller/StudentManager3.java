@@ -1,6 +1,8 @@
 package day25.practice.controller;
 
+import java.io.EOFException;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -42,6 +44,8 @@ public class StudentManager3 implements Program3{
 	@Override
 	public void run() {
 		int menu;
+		String fileName  ="src/day25/student/student.txt";
+		load();
 		do {
 			System.out.println("============");
 			printMenu();
@@ -49,7 +53,41 @@ public class StudentManager3 implements Program3{
 			runMenu(menu);
 			System.out.println("============");
 		}while(menu != EXIT);
+		save();
+		sc.close();
 				
+	}
+	private void save(String fileName) {
+		//학생 정보 저장 => 리스트 => 하나씩 꺼내서 저장
+		//저장 => OutputStream
+		//객체단위로 저장 => ObjectOutputStream
+		try(
+				FileOutputStream fos = new FileOutputStream(filenName);
+				ObjectOutputStream oos = new ObjectOutputStream(fos)){
+						for(Student tmp : list) {
+							oos.writeObject(tmp);
+						}
+			} catch (IOException e) {
+				e.printStackTrace();
+		}
+	}
+	private void load(String fileName) {
+		try(ObjectInputStream ois 
+				= new ObjectInputStream(new FileInputStream(fileName))){
+				while(true) {
+					Student tmp = (Student)ois.readObject();
+					list.add(tmp);
+				}
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			} catch (EOFException e) {
+				System.out.println();
+			} catch (IOException e) {
+				e.printStackTrace();
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			} 
+		//학생 정보 로드  
 	}
 	//메뉴에 따른 메서드 실행
 	@Override
@@ -139,31 +177,11 @@ public class StudentManager3 implements Program3{
 				 System.out.println("학생 검색 실패");
 			}
 		}
-	@Override
-	public void load() {
-		try (FileInputStream fis = new FileInputStream("Student_book");
-				ObjectInputStream ois = new ObjectInputStream(fis)){
-
-					sl = (StudentList)ois.readObject();
-					
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
+	
+	
+	
+	
 	}
-
-	@Override
-	public void save() {
-		try(FileOutputStream fos = new FileOutputStream("Student_book");
-			ObjectOutputStream oos = new ObjectOutputStream(fos)){
-				oos.writeObject(fos);
-
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-	}
-}
 		
 		
 		
