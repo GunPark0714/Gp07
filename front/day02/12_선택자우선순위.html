@@ -10,15 +10,19 @@
 		태그 : 1점
 		클래스 : 10점
 		id : 100점
-		- 점수가 높을수록 우선순위가 높다...
+		- 점수가 높을수록 우선순위가 높다... 
+		- 점수가 같은 경우는 마지막에 있는 요소가 적용
+		!important > style속성 > 아이디선택자 > 클래스 > 태그 > 전체
 		*/
-		p{color: red;}
+		p{color: red !important;}
 		.item{color:blue;}
 		.item-title{color: green;}
+		body .item{color: pink;}
+		#title{ color: yellow;}
 	</style>
 </head>
 <body>
-	<p class="item item-title" id="title" style="">
+	<p class="item item-title" id="title" style="column-rule: gray;">
 	안녕하세요.
 	</p>
 </body>
