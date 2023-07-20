@@ -639,7 +639,18 @@ header{
 	width: 115px;
 	height: 165px;
 }
-#container .box-left .box-shopping .box-shopping-body .commercearea .commercearea-left .item1box .item1-image{
+#container .box-left .box-shopping .box-shopping-body .commercearea .commercearea-left .item1box .item1-linkbox{
+	position: relative;
+	display: block;
+	height: 115px;
+}
+#container .box-left .box-shopping .box-shopping-body .commercearea .commercearea-left .item1box .item1-linkbox .item1-link{
+	position: relative;
+	display: block;
+	cursor: pointer;
+	height: 115px;
+}
+#container .box-left .box-shopping .box-shopping-body .commercearea .commercearea-left .item1box .item1-link .item1-image{
 	content: "";
 	display: block;
 	position: absolute;
@@ -651,17 +662,101 @@ header{
 	background-color: rgba(0,0,0,.03);
 	transform: translateZ(0);
 	perspective: 1px;
+	border: 1px solid rgba(0, 0, 0, .06);
 }
-#container .box-left .box-shopping .box-shopping-body .commercearea .commercearea-left .item1box .item1-link{
+#container .box-left .box-shopping .box-shopping-body .commercearea .commercearea-left .item1box .item1-button{
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	width: 22px; 
+	height: 22px;
+	z-index: 20;;
+	display: none;
+	border-radius: 4px 0 4px 0;
+	background-color: rgba(0, 0, 0, .5);
+}
+#container .box-left .box-shopping .box-shopping-body .commercearea .commercearea-left .item1box .item1-ex{
+	display: block;
+	padding-top: 10px;
+	width: 115px; height: 50px;
+}
+#container .box-left .box-shopping .box-shopping-body .commercearea .commercearea-left .item1box .item1-ex:hover{
+	text-decoration: underline;
+}
+#container .box-left .box-shopping .box-shopping-body .commercearea .commercearea-left .item1box .item1-ex .item1-ex1{
+	overflow: hidden;
+	line-height: 20px;
+	letter-spacing: -.8px;
+	white-space: nowrap;
+	font-size: 1.4rem;
+}
+#container .box-left .box-shopping .box-shopping-body .commercearea .commercearea-left .item2box{
 	width: 115px;
-	height : 115px;
-	vertical-align: top;
+	height: 165px;
+	padding-top: 20px;
+	overflow: hidden;
+}
+#container .box-left .box-shopping .box-shopping-body .commercearea .commercearea-left .item2box:hover{
+	text-decoration: underline;
+	transform: scale(1.05);
+	
+}
+#container .box-left .box-shopping .box-shopping-body .commercearea .commercearea-left .item2box .item2-linkbox{
+	position: relative;
+	display: block;
+	height: 115px;
+}
+#container .box-left .box-shopping .box-shopping-body .commercearea .commercearea-left .item2box .item2-linkbox .item2-link{
+	position: relative;
+	display: block;
+	cursor: pointer;
+	height: 115px;
+}
+#container .box-left .box-shopping .box-shopping-body .commercearea .commercearea-left .item2box .item2-link .item2-image{
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	border-radius: inherit;
+	background-color: rgba(0,0,0,.03);
+	transform: translateZ(0);
+	perspective: 1px;
+	border: 1px solid rgba(0, 0, 0, .06);
+}
+#container .box-left .box-shopping .box-shopping-body .commercearea .commercearea-left .item2box .item2-button{
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	width: 22px; 
+	height: 22px;
+	z-index: 20;;
+	display: none;
+	border-radius: 4px 0 4px 0;
+	background-color: rgba(0, 0, 0, .5);
+}
+#container .box-left .box-shopping .box-shopping-body .commercearea .commercearea-left .item2box .item2-ex{
+	display: block;
+	padding-top: 10px;
+	width: 115px; height: 50px;
+}
+#container .box-left .box-shopping .box-shopping-body .commercearea .commercearea-left .item2box .item2-ex .item2-ex1{
+	overflow: hidden;
+	line-height: 20px;
+	letter-spacing: -.8px;
+	white-space: nowrap;
+	font-size: 1.4rem;
 }
 
 /* 컨텐츠 오른쪽 영역 */
 #container .box-right{
-	float: right; width: 420px;
-
+	float: right; width: 420px; height: 1164px;
+}
+#container .box-right .banner{
+	width: 420px; height: 240px;
+	
 }
 /* 오른쪽 1번째 컨텐츠 : 로그인 박스 */
 #container .box-right>.box-account{
@@ -703,7 +798,14 @@ header{
 	width: 1px; height: 12px; background-color: #d3d5d7;
 	margin: 4px 12px 0; vertical-align: top;
 }
-
+#container .box-right .issuebanner-area{
+	width: 420px; height: 56px; margin-top: 16px; position: relative; border-radius: 8px;
+	margin: 8px 0	0	0;
+}
+#container .box-right .issuebanner-area .issuebanner{
+	overflow: hidden; height: 40px; margin-top: 20px;
+	line-height: 1.7rem;
+}
 /* 푸터 영역(회사 정보) */
 footer{
 	min-width: 1280px; /* 최소 너비로, 브라우저 작을때는 1280px, 클때는 100%*/
