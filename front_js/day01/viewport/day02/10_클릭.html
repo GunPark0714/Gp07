@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>페이지</title>
+	<style>
+		.btn-prev,
+		.btn-next{
+			width: 30px; height: 30px; background-color: #fff; border: 1px solid black;
+			cursor: pointer;
+		}
+		.box-page::after{
+			content: ''; display: block; clear: both;
+		}
+		.box-page{
+			display: flex; justify-content: center;
+		}
+		.box-page-num{
+			padding: 0 5px; line-height: 32px; font-size: 18px;
+		}
+
+	</style>
+</head>
+<body>
+	<!-- <button id="'btn">
+		<div id="box"></div>
+	</button>
+	<button id="'btn2">
+		<div id="box2"></div>
+	</button>
+	<script>
+		box.innerText = '<';
+		box2.innerText = '>';
+	-->
+
+	<div class = "box-page">
+		<button class="btn-prev"><</button>
+		<div class = "box-page-num">
+			<span class = "page-current">1</span>
+			<span class = "page-max">/6</span>
+		</div>
+		<button class="btn-next">></button>
+	</div>
+	<script>
+		let currentPage = 1;
+		const MAX_PAGE = 6;
+		let btnPrev = document.querySelector('.btn-prev');
+		let btnNext = document.querySelector('.btn-next');
+		btnPrev.onclick = ()=>{
+			currentPage--;
+			currentPage = currentPage == 0? MAX_PAGE : currentPage;
+			/*if(currentPage == 0)
+		{currentPage = MAX_PAGE}
+		} */
+		pageCurrent.innerText=currentPage;
+	}
+	</script>
+</body>
+</html>
