@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>전체선택 예제</title>
+	<script src="../js/jquery.min.js"></script>
+</head>
+<body>
+	<input type="checkbox" name="all">전체선택 <br>
+	<input type="checkbox" name="check">항목1 <br>
+	<input type="checkbox" name="check">항목2 <br>
+	<input type="checkbox" name="check">항목3 <br>
+</body>
+	<script>
+		$(['name=all']).click(function(){
+			let checked = $(this).prop('checked');
+			$('[name=check]').prop('checked',checked);
+		});
+	</script>
+</html>
