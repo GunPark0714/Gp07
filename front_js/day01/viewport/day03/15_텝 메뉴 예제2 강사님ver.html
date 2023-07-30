@@ -90,12 +90,19 @@
 			//메뉴
 			$('.item-menu').removeClass('active');
 			$(this).addClass('active');
+			//페이지 번호 변경
+			/*
+			index() : 요소가 몇번째 요소인지를 알려줌. 0부터 시작
+			*/
 		});
 		let page = 1;
 		const MAX_PAGE = $('.item-menu').length;
 		$('.item-menu').eq(page-1).click();
+
 		$('.btn-prev').click(function(){
 			page = --page == 0 ? MAX_PAGE : page;
+			$('.item-menu').eq(page-1).click();
+			drawPage(page)
 		});
 		$('.btn-next').click(function(){
 			page = ++page >  MAX_PAGE ? 1 : page;
