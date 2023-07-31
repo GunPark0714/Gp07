@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>jquery연습1</title>
+	<script src="../js/jquery.min.js"></script>
+	<style>
+		.box{
+			width: 300px; height: 300px; border: 1px solid black;
+		}
+		.btn{
+			margin: 20px; 
+		}
+	</style>
+</head>
+<body>
+	<div class="box">
+		<button class="btn">클릭</button>
+	</div>
+	<script>
+		$('.btn').click(()=>alert('안녕하세요.'));
+		//this를 이용할때는 무조건 function기능을 써야함. 
+	</script>
+</body>
+</html>
