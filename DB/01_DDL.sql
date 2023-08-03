@@ -61,11 +61,13 @@ SET DEFAULT : 참조되고 있으면 기본키의 값이 변하면 참조하는 
 
 */
 -- 대학생(학번, 이름, 학과)
-create table if not exists course.`student`(
+create table if not exists course.`student`(student
 	num char(10) not null,
     name varchar(20) not null,
     major varchar(20) not null,
     primary key(num)
+    -- primary key - 투플을 유일하게 구별하는 키
+    -- foreign key - 외부의 참조할 테이블의 기본키를 연결해줌
 );
 -- 과목(과목코드, 과목명, 학점, 시수)
 -- 과목코드 앞 3자리는 종류, 뒤 3자리는 숫자 MSC001
