@@ -57,8 +57,8 @@ where 속성명 비교연산자 (>=, <=, !=, <,>) all (서브쿼리);
 
 */
 /*
-ORDER BY : 정렬
-- order by는 where 절과 group by절 뒤에 나와야 함
+ORDER BY : 정렬나와야 함
+- order by는 where 절과 group by절 뒤에 
 order by 속성명1 정렬방법 [, 속성명2 정렬방법, ...]
 => 속성명1을 정렬방법을 기준으로 정렬하고, 속성명1의 값이 같으면 속성명2를 정렬방법을 기준으로 정렬...
 - 정렬방법
@@ -74,7 +74,7 @@ limit A;
 => 0번지부터 A개를 가져옴
 limit A, B;
 => A번지부터 B개를 가져옴
--- 컴퓨터공학과 하생들을 조회하는 쿼리
+-- 컴퓨터공학과 학생들을 조회하는 쿼리
 SELECT 
     *
 FROM
@@ -125,7 +125,7 @@ select * from course where subject-code = any(select code from subject where poi
 -- 글쓰기와 영어가 아닌 모든 과목의 수강정보를 조회
 select * from course where subject_code != all(select code from subject where title in('글쓰기','영어'));
 select * from course where subject_code in(select code from subject where title != '글쓰기' and title !='영어');
-
+ 
 -- 학생 정보를 이름순으로 오름차순 정렬하여 조회
 select * from student order by name;
 -- 학생 정보를 이름순으로 내림차순 정렬하여 조회
@@ -139,7 +139,7 @@ select * from student order by num asc limit 2;
 -- 학생들 정보를 학번순으로 오름차순 정렬 후 3번째 4번째 학생 정보를 조회하는 쿼리
 select * from student limit 2, 2;
 -- 학생들 정보를 학번순으로 오름차순 정렬 후, 2명씩 보여줄 때 3번째 페이지에 있는 학생 정보를 조회하는 쿼리 
-select * from student limit 2, 23; 
+select * from student limit 4, 2; 
 -- 각 과별 학생수를 조회
 SET GLOBAL sql_mode=(SELECT REPLACE(@@sql_mode, 'ONLY_FULL_GROUP_BY',''));
 
