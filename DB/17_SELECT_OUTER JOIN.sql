@@ -40,4 +40,3 @@ FROM PRODUCT
 		RIGHT JOIN 
         `OPTION` ON op_pr_code = pr_code
 GROUP BY pr_name;  
-    
