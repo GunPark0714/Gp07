@@ -157,7 +157,7 @@ FROM
 SELECT 
     ME_ID AS 아이디,
     SUM(CASE
-                WHEN NOW() >= CONCAT(MS_DATE, ' ', MS_START_TIME) THEN RV_PRICE
+			WHEN NOW() >= CONCAT(MS_DATE, ' ', MS_START_TIME) THEN RV_PRICE
                 ELSE 0
             END),
             0 AS 누적금액
@@ -246,4 +246,100 @@ WHERE 순위 <= 3;
         JOIN MOVIE 
 			ON MS_MO_NUM = MO_NUM
 	WHERE MS_MO_NUM = '1'
+    
+-- abc123 회원이 작성한 콘크리트 유토피아 리뷰를 admin회원이 추천을 클릭했을 때 필요한 쿼리
+-- 단 , 리뷰번호는 1번인걸 알고 있다고 가정
+-- 1. 리뷰 테이블에 데이터 추가
+INSERT INTO `LIKE` (ME_ID, RE_NUM) VALUES ('admin', 1);
+-- 2. 리뷰 테이블에 추천 수를 업데이트
+UPDATE 
+	REVIEW 
+SET 
+	RE_TOTAL_LIKE = (SELECT COUNT(*) FROM `LIKE` WHERE RE_NUM = 1)
+WHERE
+	RE_NUM = 1;
+-- admin 회원이 1번 리뷰를 추천을 취소 했을 때 필요한 쿼리
+
+DELETE FROM `LIKE` WHERE ME_ID = 'admin' AND RE_NUM = 1;
+
+-- 영화 콘크리트 유토피아 리뷰를 조회하는 쿼리
+SELECT * FROM review
+	WHERE RE_MO_NUM = 2;
+	
+-- 15세관람가 영화를 조회하는 쿼리
+SELECT * FROM movie
+	WHERE ag_name = '15세관람가';
+
+-- 이병헌이 출현한 영화를 조회하는 쿼리
+SELECT * FROM MOVIE
+	JOIN ROLE ON RO_MO_NUM = MO_NUM
+    JOIN FILM_PERSON ON FP_NUM = RO_FP_NUM
+    WHERE FP_NAME = '이병헌';
+    
+-- 2023년에 개봉한 영화를 조회하는 쿼리
+SELECT * FROM MOVIE
+	WHERE MO_OPENING_DATE LIKE '2023%';
+    
+-- 2023년에 개봉한 한국영화를 조회하는 쿼리
+SELECT * FROM MOVIE
+	JOIN COUNTRY_PRODUCTION ON MO_NUM = CP_MO_NUM
+	WHERE MO_OPENING_DATE LIKE '2023%' AND
+		  CP_CT_NAME = '한국';
+          
+-- 각 영화의 리뷰수를 조회하는 쿼리
+SELECT COUNT(RE_NUM) as '리뷰수', 
+	   mo_title as '영화제목'
+FROM REVIEW
+	RIGHT JOIN MOVIE ON re_mo_num = mo_num
+    GROUP BY mo_title;
+
+-- CGV강남에서 상영하는 모든 영화 스케쥴을 조회하는 쿼리
+SELECT 	ms_date as '상영일' ,
+        th_name as '영화관명',
+        th_address as '영화관주소',
+	    mo_title as '영화제목',
+		ms_sc_num as '상영관번호',
+        sc_name as '상영관이름',
+		ms_start_time as '시작시간',
+		ms_end_time as '종료시간',
+		ms_possible_seat as '예매가능좌석수'
+        
+FROM MOVIE_SCHEDULE
+	JOIN SCREEN ON MS_SC_NUM = SC_NUM
+    JOIN THEATER ON TH_NUM = SC_TH_NUM
+    JOIN MOVIE ON mo_num = MS_MO_NUM
+    WHERE th_name = 'CGV강남';
+    
+    
+-- 영화 예매율 순으로 가장 예매율이 높은 영화 1개를 조회하는 쿼리
+-- 예매율이 같은 경우 개봉일이 늦은 영화를 조회
+SELECT MO_TITLE AS 영화예매율 
+	FROM 
+		MOVIE
+	ORDER BY MO_RESERVATION_RATE DESC, MO_OPENING_DATE ASC
+    LIMIT 1;
+    
+-- 등록된 영화를 조회하는 쿼리
+SELECT * FROM MOVIE;
+
+-- 장르가 드라마인 영화를 조회하는 쿼리
+
+SELECT * FROM MOVIE
+	JOIN movie_genre ON MO_NUM = MG_MO_NUM
+    WHERE MO_GE_NAME = '드라마';
+    
+-- 개봉전인 영화를 조회하는 쿼리
+SELECT * FROM MOVIE
+	WHERE NOW() < CONCAT(MO_OPENING_DATE, '', '');
+-- 상영종료된 영화를 조회하는 쿼리(현재 개봉중인 영화는 오늘을 기준으로 2주까지 스케쥴이 반드시 등록이 된다는 전제조건)
+
+
+SELECT MO_TITLE AS '상영종료영화'
+ FROM 
+	MOVIE
+		LEFT JOIN -- 상영 종료된 영화는 상영 정보가 없기 떄문에 INNER JOIN을 하면 상영 종료된 영화가 조회되지 않음 
+    MOVIE_SCHEDULE ON MS_NUM = MO_NUM
+    WHERE NOW() >= CONCAT(MO_OPENING_DATE, '', '')
+    HAVING 
+		COUNT(MS_NUM) = 0;
     
