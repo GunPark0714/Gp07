@@ -41,6 +41,59 @@ DELIMITER ;
 프로시저 호출 
 CALL 프로시저명(매개변수들);
 */
+-- 모든 영화 예매율을 업데이트하는 프로시저
+DROP PROCEDURE IF EXISTS UPDATE_RESERVATION_MOVIE;
+-- 영화를 예매하는 프로시저 
+DELIMITER //
+CREATE PROCEDURE UPDATE_RESERVATION_MOVIE()
+BEGIN
+	DECLARE _TOTAL_SEAT INT;
+    DECLARE DONE INT DEFAULT 0; 
+	DECLARE _MO_NUM INT; 
+    DECLARE _MOVIE_SEAT INT;
+    
+    DECLARE CUR CURSOR FOR
+		SELECT MO_NUM FROM MOVIE;
+	DECLARE CONTINUE HANDLER FOR NOT FOUND SET DONE = 1;
+	-- 영화 예매를 이용하여 예매 좌석수 별로 예매율을 계산 
+    -- => A영화 예매율 : A영화 예매좌석수 / 현재 예매중인 전체 예매 좌석수 * 100
+    -- 전체 예매 좌석수
+    SET _TOTAL_SEAT = (
+		SELECT 
+			SUM(RV_ADULT + RV_TEENAGER) 
+		FROM 
+			RESERVATION
+	);
+     OPEN CUR;
+     MOIVE_LOOP = LOOP
+		-- FETCH : CUR에서 한 행씩 꺼내는 작업을 함
+		FETCH CUR INTO _MO_NUM;
+        IF DONE THEN 
+			LEAVE MOVIE_LOOP;
+		END IF;
+        -- 하고싶은 작업 
+        -- 현재 선택된 영화의 예매 좌석수를 계산
+		SET _MOVIE_SEAT = ();
+        SELECT 
+			IFNULL(SUM(RV_ADULT+RV_TEENAGER),0) 
+        FROM 
+			MOVIE_SCHEDULE 
+		JOIN 
+			RESERVATION ON RV_MS_NUM = MS_NUM
+		WHERE 
+			MS_MO_NUM = _MO_NUM
+            );
+	-- 예매율 업데이트
+    UPDATE MOVIE
+    SET
+		MO_RESERVATION_RATE = ROUND(_MOVIE_SEAT / _TOTAL_SEAT * 100)
+	WHERE 
+        MO_NUM = _MO_NUM;
+    END LOOP; 
+    CLOSE CUR;
+ 
+END//
+DELIMITER;
 DROP PROCEDURE IF EXISTS RESERVATION_MOVIE;
 -- 영화를 예매하는 프로시저 
 DELIMITER //
@@ -161,10 +214,11 @@ BEGIN
 		MS_NUM = _MS_NUM;
     
     -- 모든 영화 예매율을 업데이트 
+    CALL UPDATE_RESERVATION_RATE();
 END //
 DELIMITER ;
 
-CALL RESERVATION_MOVIE(1, 'admin', 1, 1,'[{"SEAT_NAME" : "C1"},{"SEAT_NAME" : "C2"}]');
+CALL RESERVATION_MOVIE(4, 'admin', 1, 1,'[{"SEAT_NAME" : "A1"},{"SEAT_NAME" : "A2"}]');
 /* 
 { "속성명" : 값,"속성명" : 값}
 */
