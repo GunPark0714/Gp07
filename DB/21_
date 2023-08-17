@@ -278,58 +278,7 @@ FROM
 	ON RV_MS_NUM = MS_NUM) * 100)
 WHERE
     MO_NUM = 2;
+    
+-- 'abc123'회원이 콘크리트 유토피아 리뷰를 다음과 작성할 때 쿼리
+-- 콘크리트 유토피아 재미있어요.
 
--- abc회원의 예매 내역을 조회하는 쿼리(영화명, 시간 , 좌석명)
-SELECT MO_TITLE AS 영화제목, MS_START_TIME AS 상영시간, SE_NAME AS 좌석
- FROM 
-		RESERVATION
-		JOIN 
-        RESERVATION_LIST ON RL_RV_NUM = RV_NUM
-		JOIN
-        SEAT ON RL_SE_NUM = SE_NUM
-        JOIN
-        MOVIE_SCHEDULE ON MS_NUM = RV_MS_NUM
-        JOIN 
-        MOVIE ON MO_NUM = MS_MO_NUM
-WHERE RV_ME_ID = 'abc123';
--- abc 회원의 예매 내역을 조회하는 쿼리( 영화명, 시간, 성인 X명, 청소년 X명)
-
-SELECT MO_TITLE AS 영화제목, MS_START_TIME AS 상영시간,
-	   SUM(RV_ADULT) AS 성인수, SUM(RV_TEENAGER) AS 청소년수
- FROM 
-		RESERVATION
-		JOIN 
-        MOVIE_SCHEDULE ON MS_NUM = RV_MS_NUM
-        JOIN 
-        MOVIE ON MO_NUM = MS_MO_NUM
-WHERE RV_ME_ID = 'abc123'
-GROUP BY RV_NUM;
--- CGV강남 영화관에서 콘크리트 유토피아 20:50에 예매 가능한 좌석을 조회하는 쿼리(OUTER JOIN)
-SELECT 
-		SE_NAME
- FROM 
-		SEAT 
-			JOIN 
-        SCREEN ON SE_SC_NUM = SC_NUM	
-			JOIN
-		MOVIE_SCHEDULE ON MS_SC_NUM = SC_NUM
-WHERE
-        MS_NUM = 8 AND SE_NUM NOT IN(
-		SELECT RL_SE_NUM FROM RESERVATION 
-	JOIN RESERVATION_LIST ON RL_RV_NUM = RV_NUM
-    WHERE RV_MS_NUM = 8	
-	);
-    SELECT 
-    SE_NAME
-FROM
-    SEAT
-        JOIN
-    SCREEN ON SE_SC_NUM = SC_NUM
-		JOIN
-	MOVIE_SCHEDULE ON MS_SC_NUM = SC_NUM
-		JOIN
-	RESERVATION ON RV_MS_NUM = MS_NUM
-		LEFT JOIN -- 예약과 예약 리스트를 JOIN하는게 아니라 예약 리스트와 좌석을 JOIN
-	RESERVATION_LIST ON SE_NUM = RL_SE_NUM
-WHERE
-	MS_NUM = 8 AND RL_SE_NUM IS NOT NULL;
