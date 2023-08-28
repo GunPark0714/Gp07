@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>회원가입 예제</title>
+	<script src="../js/jquery.min.js"></script>
+</head>
+<body>
+	회원가입에 오신것을 환영합니다 !! <br>
+	<br>
+	ID:
+	<input type="text" id="id">
+	<div class="box"></div>
+	Password:
+	<input type="text" id="Password">
+	<div class="box2"></div>
+	password-confirm
+	<input type="text" id="Password-confirm">
+	<div class="box3"></div>
+	<script>
+		let regex = /^\w{8,13}$/;
+		$('#id').change(function(){
+			let text = $(this).val();
+			if(regex.test(text)){
+				$('.box').text('올바른 아이디 입력입니다.')
+			}else{
+				$('.box').text('영문과 숫자 8~13자리를 입력하세요')
+			}
+		});
+		let regex2 = /^[a-zA-Z0-9!@#$_]{8,20}$/;
+		$('#Password').change(function(){
+			let text = $(this).val();
+			if(regex2.test(text)){
+				$('.box2').text('올바른 비밀번호 입력입니다.')
+			}else{
+				$('.box2').text('!@#$를 포함한 영문과 숫자 8~20자리를 입력하세요.')
+			}
+		});
+		$('#Password-confirm').change(function(){
+			let text = $(this).val();
+		if('#Password' = '#Password-confirm'){
+			$('.box3').text('비밀번호 확인')
+		}else{
+			$('.box3').text('잘못된 비밀번호 입력입니다.')
+		};
+	});
+	</script>
+</body>
+</html>

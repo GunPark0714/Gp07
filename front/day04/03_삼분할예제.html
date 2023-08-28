@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>삼분할예제</title>
+	<style>
+		/* 
+		calc 함수
+		- 다양한 단위의 값들을 계산해주는 함수
+		- 연산자 앞뒤로는 공백을 추가
+		*/
+		.container{
+			width: 500px; height: 500px; padding: 10px;
+			box-sizing: border-box; background-color: red;
+		}
+		.box{
+			float: left; background-color: yellow;
+			width: calc((100% - 2 * 10px) / 3); height: 100%;
+		}
+		.box+.box{
+			margin-left: 10px;
+		}
+
+
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="box box1"></div>
+		<div class="box box2"></div>
+		<div class="box box3"></div>
+	</div>
+</body>
+</html>

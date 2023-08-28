@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>공지사항 작성</title>
+</head>
+<style>
+	.box{
+		position: relative;
+		width: auto;
+		height: auto;
+		padding: 20px;
+		border: 1px solid black;
+		margin: 20px;
+	}
+	.title{
+		margin-bottom: 5px;
+	}
+	.content{
+		margin: 5px; 
+	}
+	.uploadFile{
+		margin: 5px;
+	}
+	.button{
+		margin: 5px;
+	}
+	hr{
+		margin: 20px;
+	}
+
+	table{
+		width: 100%;
+		margin: none;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	th{
+		background-color:coral;
+		color: white;
+	}
+	tr{
+		background-color:#FAFAD2
+	}
+	td button{
+		width: 100%;
+	}
+	.contents b{
+		vertical-align: top;
+	}
+</style>
+<body>
+	<!-- 공지사항 작성 -->
+	<form action="insert.no" method="post">
+		<fieldset>
+			<legend>공지사항 작성하기</legend>
+			<div class="title">
+				<b>제목</b>
+				<input type="text" name="title" placeholder="제목을 입력하세요" required></br>
+			</div>
+			<div class="contents">
+				<b>내용</b>
+				<textarea name="contents" cols="30" rows="10"></textarea>
+			</div>
+			<div class="uploadefile">
+				<b>첨부파일</b>
+				<input type="file" name="uploadfile"> </br>
+			</div>
+			<button type="button" class="button">작성하기</button>
+		</fieldset>
+		<!-- 수평선 -->
+	<hr/>
+	<!-- 공지사항 리스트 -->
+	<table border="1">
+		<th>번호</th>
+		<th colspan="2">제목</th>
+		<th>작성자</th>
+		<th>작성일</th>
+		<th>조회수</th>
+		<tr>
+			<td>9</td>
+			<td>공지사항제목9</td>
+			<td width="70"><button type="button" onclick="www.naver.com">바로가기</button></td>
+			<td>user01</td>
+			<td>2021-03-20</td>
+			<td>34</td>
+		</tr>
+		<tr>
+			<td>6</td>
+			<td>공지사항제목6</td>
+			<td><button type="button" onclick="www.naver.com">바로가기</button></td>
+			<td>answ445</td>
+			<td>2021-03-12</td>
+			<td>67</td>
+		</tr>
+		<tr>
+			<td>3</td>
+			<td>공지사항제목3</td>
+			<td><button type="button" onclick="www.naver.com">바로가기</button></td>
+			<td>testg12</td>
+			<td>2021-03-01</td>
+			<td>98</td>
+		</tr>
+		<tr>
+			<td>2</td>
+			<td>공지사항제목2</td>
+			<td><button type="button" onclick="www.naver.com">바로가기</button></td>
+			<td>palwe3</td>
+			<td>2021-01-02</td>
+			<td>85</td>
+		</tr>
+		<tr>
+			<td>1</td>
+			<td>공지사항제목1</td>
+			<td><button type="button" onclick="www.naver.com">바로가기</button></td>
+			<td>xml23</td>
+			<td>2020-12-24</td>
+			<td>124</td>
+		</tr>
+		<th colspan="4">전체공지사항 갯수</th>
+		<th colspan="2">5개</th>
+	</table>
+	</form>
+</body>
+</html>

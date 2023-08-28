@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>탭예제</title>
+	<script src="../js/jquery.min.js"></script>
+	<style>
+		.box1{
+			height: 300px; width: 300px;
+			border: 3px solid blue; display: none;
+		}
+		.box2{
+			height: 300px; width: 300px;
+			border: 3px solid orange; display: none;
+		}
+		.btn{
+			margin: 10px;
+		}
+	</style>
+</head>
+<body>
+	<button class="btn btn1">버튼1</button> 
+	<button class="btn btn2" data-target=.box2>박스2</button>
+	<div class="container">
+		<div class="box box1"></div>
+		<div class="box box2"></div>
+	</div>
+</body>
+<script>
+	/*$('.btn1').click(function(){
+		//let target = $(this).attr('data-target');
+		let target = $(this).data('target');
+		$('.box').show();
+		$(target).hide();
+	});*/
+$('.btn').click(function(){
+	let index = $(this).index();
+	//$('.box').hide();
+	//$('.box').eq(index).show();
+	$('.box') //모든 박스를
+	.hide()		//감추고
+	.eq(index)	//index+1 번째 박스를
+	.show();	//보여줌
+});
+</script>
+</html>

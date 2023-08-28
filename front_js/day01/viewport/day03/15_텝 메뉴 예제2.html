@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>텝 메뉴 예제2</title>
+	<script src="../js/jquery.min.js"></script>
+	<style>
+		.box1{
+			width: 300px; height: 300px;
+			background-color: red; margin-top: 30px;
+		}
+		.box2{
+			width: 300px; height: 300px;
+			background-color: blue; margin-top: 30px;
+		}
+		.box3{
+			width: 300px; height: 300px;
+			background-color: yellow; margin-top: 30px;
+		}
+
+	</style>
+</head>
+<body>
+	<button class="btn btn1">버튼1</button>
+	<button class="btn btn2">버튼2</button>
+	<button class="btn btn3">버튼3</button>	
+	<div class="box box1"></div>
+	<div class="box box2"></div>
+	<div class="box box3"></div>
+	<script>
+		$('.box').hide();
+		$('.btn1').click(function(){
+			$('.box1').show();
+			$('.box2').hide();
+			$('.box3').hide();
+			$(this).css('background', 'red');
+			$('.btn2').css('background','#F0F0F0');
+			$('.btn3').css('background','#F0F0F0');
+		});
+		$('.btn2').click(function(){
+			$('.box1').hide();
+			$('.box2').show();
+			$('.box3').hide();
+			$(this).css('background', 'blue');
+			$('.btn1').css('background','#F0F0F0');
+			$('.btn3').css('background','#F0F0F0');
+		});
+		$('.btn3').click(function(){
+			$('.box1').hide();
+			$('.box2').hide();
+			$('.box3').show();
+			$(this).css('background', 'yellow');
+			$('.btn1').css('background','#F0F0F0');
+			$('.btn2').css('background','#F0F0F0');
+		});
+	
+		
+	</script> 
+</body>
+</html>
