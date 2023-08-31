@@ -84,7 +84,7 @@ WHERE
 GROUP BY절 : 같은 값을 가지는 행들을 묶어서 평균을 내거나 개수를 세는 등의 작업을 할 때 사용
 HAVING절 : 집계 함수의 조건을 걸때 사용
 - 위치는 Where절 다음. Order 앞    
-    자주 사용하는 집계함수
+자주 사용하는 집계함수
  -   avg() : 평균
 -	min() : 최소값 
 -  count(속성) : 행(듀플)의 개수
@@ -148,3 +148,4 @@ select major, count(num) as 학생수 from student group by major;
 select subject_code as 과목코드, count(*) as '수강생수' from course group by subject_code;
 -- 과목별 수강생 수가 4명 이상인 과목의 과목코드를 조회하는 쿼리
 select subject_code as 과목코드, count(*) as '수강생수' from course group by subject_code having 수강생수 >= 4;
+

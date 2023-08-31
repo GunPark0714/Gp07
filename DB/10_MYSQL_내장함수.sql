@@ -22,7 +22,7 @@ replace (문자열, 원래문자열, 바꿀문자열);
 
 substring(문자열, 시작위치, 길이)
 문자열에서 시작위치부터 길이만큼 찾아서 반환. 길이가 생략되면 시작위치부터 끝까지 반환
-
+and substing(string, 8,1)=1;
 now(), current_timestamp(); sysdate(); 
 현재시간을 년-월-일 시:분:초로 알려주는 함수
 
