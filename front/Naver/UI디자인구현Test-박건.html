@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<!-- saved from url=(0138)http://127.0.0.1:5500/front_js/day01/viewport/%EC%8B%9C%ED%97%98%EC%97%B0%EC%8A%B5/UI%EB%94%94%EC%9E%90%EC%9D%B8%20%EA%B5%AC%ED%98%84.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>UI디자인 구현</title>
+	<style>
+		.box{
+			position: relative;
+			width: auto;
+			height: auto;
+			padding: 15px;
+			border: 1px solid black;
+			margin: 15px;
+		}
+		.title{
+			margin: 5px;
+		}
+		.content{
+			margin: 5px;
+		}
+		.uploadFile{
+			margin: 5px;
+		}
+		.btn-write{
+			text-align: center;
+			margin-left: 5%
+		}
+		.content b{
+			vertical-align: top;
+		}
+		table{
+			width: 100%;
+			margin-left: auto;
+			margin-right: auto;
+		}
+		th{
+			background-color: coral;
+			color: white;	
+		}
+		td{
+			background-color:beige
+		}
+		td button{
+			width: 100%;
+		}
+	
+	</style>
+</head>
+<body>
+	<form action="http://127.0.0.1:5500/front_js/day01/viewport/%EC%8B%9C%ED%97%98%EC%97%B0%EC%8A%B5/insert.no" method="post">
+		<fieldset>
+		<legend>공지사항 작성하기</legend>
+		<div class="title">
+			<b>제목</b>
+				<input type="text" name="title" placeholder="제목을 입력하시오." required="">
+			</div>
+			<div class="content">
+			<b>내용</b>
+				<textarea name="content" cols="30" rows="10" placeholder="내용을 입력하시오."></textarea>
+			</div>
+			<div class="uploadFile">
+			<b>첨부파일</b>
+				<input type="file" name="uploadFile">
+			</div>
+			<button type="button" class="btn-write">작성하기</button>
+		</fieldset>
+	<hr>
+		<table border="1">
+			<tbody><tr>
+				<th>번호</th>
+				<th colspan="2">제목</th>
+				<th>작성자</th>
+				<th>작성일</th>
+				<th>조회수</th>
+			</tr>
+			<tr>
+				<td>9</td>
+				<td width="60%">공지사항 제목9
+				</td><td><button type="button">바로가기</button></td>
+				<td>user01</td>
+				<td>2021-03-29</td>
+				<td>34</td>
+			</tr>
+			<tr>
+				<td>6</td>
+				<td>공지사항 제목6</td>
+				<td><button type="button">바로가기</button></td>
+				<td>answ445</td>
+				<td>2021-03-12</td>
+				<td>67</td>
+			</tr>
+			<tr>
+				<td>3</td>
+				<td>공지사항 제목3</td>
+				<td><button type="button">바로가기</button></td>
+				<td>testg12</td>
+				<td>2021-03-01</td>
+				<td>98</td>
+			</tr>
+			<tr>
+				<td>2</td>
+				<td>공지사항 제목2</td>
+				<td><button type="button">바로가기</button></td>
+				<td>palwe3</td>
+				<td>2021-01-02</td>
+				<td>85</td>
+			</tr>
+			<tr>
+				<td>1</td>
+				<td>공지사항 제목1</td>
+				<td><button type="button">바로가기</button></td>
+				<td>palwe3</td>
+				<td>2021-01-02</td>
+				<td>124</td>
+			</tr>
+			<tr>
+				<th colspan="4">전체공지사항 갯수</th>
+				<th colspan="2">5개</th>
+			</tr> 
+		</tbody></table>
+	</form>
+<!-- Code injected by live-server -->
+<script>
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
+
+</body></html>

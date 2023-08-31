@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>스탑워치과제</title>
+	<style>
+		#box{
+			width: 200px; border: solid 2px black;
+			line-height: 50px; 
+			text-align: center;
+			font-size: 30px; font-weight: bold;
+			 
+			
+			
+		}
+		.btn{
+			margin: 5px;
+			width: 80px;
+			margin-right: 20px;
+			border-radius: 20px;
+			border: none;
+			text-align: center;
+			color: blue;
+		}
+	</style>
+</head>
+<body>
+	<div id="box"></div>
+	<button class= "btn btn-start" onclick="runAndStop()">시작/스톱</button>
+	<button class = "btn btn-reset" onclick="reset()">리셋</button>
+	<script>
+
+		box.innerText = '00:00:00:00';
+		let h = 0, m = 0, s = 0, ms = 0;
+		setInterval(function(){
+			ms++
+			if(ms == 60){
+				s++;
+				ms = 0;
+			}	
+			if(s == 60){
+				m++;
+				s = 0;
+			}
+			if(m == 60){
+				h++;
+				m = 0;
+			}
+			box.innerText = getTime(h, m, s, ms);
+		}, 10);
+
+		function getTime(h, m, s, ms){
+			return ''+fillZero(h) + ':' + fillZero(m) + ':' + fillZero(s) + ':' + fillZero(ms);
+		}
+		function fillZero(num){
+			return num < 10 ? '0'+ num : num;
+		}
+		
+		function runAndStop(){
+			if(!isRunning){
+				id = setInterval(timer,10);
+				isRunning = true;
+			}else{
+				isRunning = false;
+				cleaseInterval(id);
+			}
+		}
+
+		
+	</script>
+</body>
+</html>
