@@ -4,7 +4,7 @@
 <!doctype html>
 <html lang="ko">
 <head>
-   	<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
+	<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
 </head>
 <body>
@@ -16,16 +16,16 @@
 		</div>
 		<div class="form-group">
 			<label>작성자</label>
-			<input type="text" class="form-control" name="bo_me_id" value="${user.me_id}" readonly>
+			<input type="text" class="form-control" name="bo_me_id" value="${user.me_id }" readonly>
 		</div>
-			<div class="form-group">
+		<div class="form-group">
 			<label>내용</label>
 			<textarea name="bo_contents" id="summernote"></textarea>
 		</div>
 		<button class="btn btn-outline-success col-12">등록하기</button>
 	</form>
 	
-	 <script>
+	<script>
       $('#summernote').summernote({
         placeholder: '내용을 입력하세요.',
         tabsize: 2,
