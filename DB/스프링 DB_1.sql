@@ -2,50 +2,51 @@ create database spring;
 use spring;
 
 CREATE TABLE `member` (
-	`me_id`	varchar(15)	NOT NULL,board_type
+	`me_id`	varchar(15)	NOT NULL PRIMARY KEY,
 	`me_pw`	varchar(255)	NULL,
 	`me_email`	varchar(50)	NULL,
 	`me_role`	varchar(10)	NULL
 );
 
 CREATE TABLE `board` (
-	`bo_num`	int	NOT NULL,
-	`bo_title`	varchar(50)	NULL,
-	`bo_contents`	longtext	NULL,
-	`bo_views`	int	NULL,
-	`bo_reg_date`	datetime	NULL,
+	`bo_num`	int	NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	`bo_title`	varchar(50)	NOT NULL,
+	`bo_contents`	longtext	NOT NULL,
+	`bo_views`	int	NOT NULL,
+	`bo_reg_date`	datetime	NOT NULL,
 	`bo_up_date`	datetime	NULL,
-	`bo_ori_num`	int	NULL,
+	`bo_ori_num`	int	NOT NULL,
 	`bo_me_id`	varchar(15)	NOT NULL,
-	`bo_up`	int	NULL,
-	`bo_down`	int	NULL,
-	`bo_comment`	int	NULL,
+	`bo_up`	int	NOT NULL,
+	`bo_down`	int	NOT NULL,
+	`bo_coment`	int	NOT NULL,
 	`bo_bt_num`	int	NOT NULL
 );
 
 CREATE TABLE `like` (
-	`li_num`	int	NOT NULL,
+	`li_num`	int	NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	`li_state`	int	NULL,
 	`li_me_id`	varchar(15)	NOT NULL,
 	`li_bo_num`	int	NOT NULL
 );
 
 CREATE TABLE `board_type` (
-	`bt_num`	int	NOT NULL,
+	`bt_num`	int	NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	`bt_title`	varchar(20)	NULL
 );
 
 CREATE TABLE `comment` (
-	`co_num`	int	NOT NULL,
+	`co_num`	int	NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	`co_contents`	longtext	NULL,
 	`co_ori_num`	int	NULL,
+	`co_bo_num`	int	NOT NULL,
 	`co_me_id`	varchar(15)	NOT NULL
 );
 
 CREATE TABLE `file` (
-	`fi_num`	int	NOT NULL,
+	`fi_num`	int	NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	`fi_name`	varchar(100)	NULL,
-	`fi_ori_name`	varchar(50)	NULL,
+	`fi_ori_num`	varchar(50)	NULL,
 	`fi_bo_num`	int	NOT NULL
 );
 
@@ -101,6 +102,13 @@ REFERENCES `board` (
 	`bo_num`
 );
 
+ALTER TABLE `comment` ADD CONSTRAINT `FK_board_TO_comment_1` FOREIGN KEY (
+	`co_bo_num`
+)
+REFERENCES `board` (
+	`bo_num`
+);
+
 ALTER TABLE `comment` ADD CONSTRAINT `FK_member_TO_comment_1` FOREIGN KEY (
 	`co_me_id`
 )
@@ -114,3 +122,4 @@ ALTER TABLE `file` ADD CONSTRAINT `FK_board_TO_file_1` FOREIGN KEY (
 REFERENCES `board` (
 	`bo_num`
 );
+
