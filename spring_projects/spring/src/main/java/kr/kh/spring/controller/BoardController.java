@@ -45,14 +45,15 @@ public class BoardController {
 	}
 	
 	@GetMapping("/insert")
-	public String insert() {
+	public String insert(Model model, Integer bo_ori_num) {
+		model.addAttribute("bo_ori_num", bo_ori_num == null ? 0 : bo_ori_num);
 		return "/board/insert";
 	}
 	@PostMapping("/insert")
-	public String insertPost(BoardVO board, HttpSession session, Model model, MultipartFile[] files) {
+	public String insertPost(BoardVO board, HttpSession session, Model model, MultipartFile[] files2) {
 		MemberVO user = (MemberVO)session.getAttribute("user");
 		Message msg;
-		if(boardService.insertBoard(board, user, files)) {
+		if(boardService.insertBoard(board, user, files2)) {
 			msg = new Message("/board/list", "게시글을 등록했습니다.");
 		}else {
 			msg = new Message("/board/insert", "게시글을 등록하지 못했습니다.");
