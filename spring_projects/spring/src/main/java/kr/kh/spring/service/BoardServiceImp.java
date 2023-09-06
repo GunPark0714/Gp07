@@ -12,6 +12,7 @@ import kr.kh.spring.pagination.Criteria;
 import kr.kh.spring.util.UploadFileUtils;
 import kr.kh.spring.vo.BoardVO;
 import kr.kh.spring.vo.FileVO;
+import kr.kh.spring.vo.LikeVO;
 import kr.kh.spring.vo.MemberVO;
 
 @Service
@@ -145,13 +146,14 @@ public class BoardServiceImp implements BoardService{
 			return false;
 		}
 		BoardVO board = boardDao.selectBoard(bo_num);
-		if(board == null || board.getBo_me_id().equals(user.getMe_id())) {
-		return false;
+		//없는 게시글이거나 작성자가 아니면 
+		if(board == null || !board.getBo_me_id().equals(user.getMe_id())) {
+			return false;
 		}
 		//첨부파일 삭제
 		List<FileVO> fileList = board.getFileVoList();
 		deleteFile(fileList);
-		//게시글 삭제
+		//게시글 삭제 
 		boardDao.deleteBoard(bo_num);
 		return true;
 	}
@@ -161,10 +163,43 @@ public class BoardServiceImp implements BoardService{
 			return;
 		}
 		//List<FileVO> => Integer[]
-		Integer[] nums = new Integer[fileList.size()];
+		Integer [] nums = new Integer[fileList.size()];
 		for(int i = 0; i<nums.length; i++) {
 			nums[i] = fileList.get(i).getFi_num();
 		}
 		deleteFile(nums);
+	}
+
+	@Override
+	public int like(LikeVO likeVo) {
+		if(likeVo == null || likeVo.getLi_me_id() == null) {
+			return -100;
+		}
+		//기존 추천 정보를 가져옴(게시글 번호와 아이디)
+		LikeVO dbLikeVo = boardDao.selectLike(likeVo.getLi_bo_num(), likeVo.getLi_me_id());
+		
+		//기존 추천 정보가 없으면
+		if(dbLikeVo == null) {
+			//추가
+			boardDao.insertLike(likeVo);
+		}
+		else {//있으면
+			//db에 있는 추천 상태와 화면에 누른 추천 상태가 같으면 => 취소 
+			if(dbLikeVo.getLi_state() == likeVo.getLi_state()) {
+				likeVo.setLi_state(0);
+			}
+			//업데이트
+			boardDao.updateLike(likeVo);
+		}
+		boardDao.updateBoardLike(likeVo.getLi_bo_num());
+		return likeVo.getLi_state();
+	}
+
+	@Override
+	public LikeVO getBoardLike(Integer bo_num, MemberVO user) {
+		if(bo_num == null || user == null) {
+			return null;
+		}
+		return boardDao.selectLike(bo_num, user.getMe_id());
 	}
 }

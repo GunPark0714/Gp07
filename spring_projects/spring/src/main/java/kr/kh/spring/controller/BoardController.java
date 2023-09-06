@@ -1,6 +1,8 @@
 package kr.kh.spring.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -9,7 +11,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import kr.kh.spring.pagination.Criteria;
@@ -17,6 +21,7 @@ import kr.kh.spring.pagination.PageMaker;
 import kr.kh.spring.service.BoardService;
 import kr.kh.spring.util.Message;
 import kr.kh.spring.vo.BoardVO;
+import kr.kh.spring.vo.LikeVO;
 import kr.kh.spring.vo.MemberVO;
 
 @Controller
@@ -56,12 +61,14 @@ public class BoardController {
 		return "message";
 	}
 	@GetMapping("/detail")
-	public String detail(Model model, Integer bo_num , Criteria cri) {
+	public String detail(Model model, Integer bo_num , Criteria cri, HttpSession session) {
 		boardService.updateViews(bo_num);
 		BoardVO board = boardService.getBoard(bo_num);
-		//List<FileVO> fileList = boardService.getFileList(bo_num)
+		MemberVO user = (MemberVO) session.getAttribute("user");
+		LikeVO like = boardService.getBoardLike(bo_num, user);
 		model.addAttribute("board", board);
 		model.addAttribute("cri", cri);
+		model.addAttribute("like", like);
 		return "/board/detail";
 	}
 	@GetMapping("/update")
@@ -70,7 +77,7 @@ public class BoardController {
 		MemberVO user = (MemberVO)session.getAttribute("user");
 		if(user == null || board == null || !user.getMe_id().equals(board.getBo_me_id())) {
 			Message msg = new Message("/board/list", "잘못된 접근입니다.");
-			model.addAttribute("msg",msg);
+			model.addAttribute("msg", msg);
 			return "message";
 		}
 		model.addAttribute("board", board);
@@ -91,7 +98,7 @@ public class BoardController {
 	}
 	@GetMapping("/delete")
 	public String delete(Model model, HttpSession session, Integer bo_num) {
-		MemberVO user =(MemberVO)session.getAttribute("user");
+		MemberVO user = (MemberVO)session.getAttribute("user");
 		Message msg;
 		if(boardService.deleteBoard(bo_num, user)) {
 			msg = new Message("/board/list", "게시글을 삭제했습니다.");
@@ -99,6 +106,18 @@ public class BoardController {
 			msg = new Message("/board/list", "잘못된 접근입니다.");
 		}
 		model.addAttribute("msg", msg);
-			return "message";
+		return "message";
+	}
+	
+	@ResponseBody
+	@PostMapping("/like")
+	public Map<String, Object> ajaxTest(@RequestBody LikeVO likeVo){
+		Map<String, Object> map = new HashMap<String, Object>();
+		//추천 : 1, 비추천 : -1, 취소: 0
+		int res = boardService.like(likeVo);
+		BoardVO board = boardService.getBoard(likeVo.getLi_bo_num());
+		map.put("res", res);
+		map.put("board", board);
+		return map;
 	}
 }
