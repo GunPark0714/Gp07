@@ -119,4 +119,59 @@
 		where
 			bo_num = #{bo_num}
 	</update>
+	
+	==int
+	
+	<settings>
+    <setting name="jdbcTypeForNull" value="NULL" />
+ </settings>
+ 
+ 
+ <select id="selectSearchList" resultType="boardResultSet">
+	SELECT BOARD_NO, BOARD_TITLE, USER_ID, COUNT, CREATE_DATE
+	FROM BOARD B
+	JOIN MEMBER ON(BOARD_WRITER=USER_NO)
+	<trim prefix="WHERE" prefixOverrides="AND|OR">
+		<choose>
+			<when test="writer != null">
+				AND USER_ID like #{writer}
+			</when>
+			<when test="title != null">
+				AND BOARD_TITLE like #{title}
+			</when>
+			<when test="content != null">
+				AND BOARD_CONTENT like #{content}
+			</when>
+		</choose>
+	</trim>
+	<![CDATA[
+		AND B.STATUS<> 'N'
+		ORDER BY BOARD_NO DESC
+	]]>
+	
+	
+	
+	<environments default="oracleds">
+	<environment id="oracleds">
+		<transactionManager type="JDBC" />
+		<dataSource type="POOLED">
+			<property name="driver" value="oracle.jdbc.driver.OracleDriver" />
+			<property name="url"
+				value="jdbc:oracle:thin:@192.168.10.33:1521:xe" />
+			<property name="username" value="mybatis" />
+			<property name="password" value="mybatis" />
+		</dataSource>
+	</environment>
+</environments>
+</select>
+
+
+
+<typeAliases>
+	<typeAlias type="com.kh.myBatis.member.model.vo.Member" alias="Member" />
+	<typeAlias type="com.kh.myBatis.board.model.vo.Board" alias="Board" />
+	<typeAlias type="com.kh.myBatis.board.model.vo.SearchCondition" alias="SearchCondition" />
+</typeAliases>
+
+ 	
 </mapper>
