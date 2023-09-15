@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -20,6 +21,7 @@ import kr.kh.spring.pagination.Criteria;
 import kr.kh.spring.pagination.PageMaker;
 import kr.kh.spring.service.BoardService;
 import kr.kh.spring.util.Message;
+import kr.kh.spring.vo.BoardTypeVO;
 import kr.kh.spring.vo.BoardVO;
 import kr.kh.spring.vo.LikeVO;
 import kr.kh.spring.vo.MemberVO;
@@ -31,6 +33,8 @@ public class BoardController {
 	@Autowired
 	BoardService boardService;
 	
+	
+	
 	@GetMapping("/list")
 	public String list(Model model, Criteria cri) {
 		cri.setPerPageNum(2);
@@ -39,14 +43,24 @@ public class BoardController {
 		int totalCount = boardService.getTotalCount(cri);
 		PageMaker pm = new PageMaker(3, cri, totalCount);
 		
+		List<BoardTypeVO> typeList = boardService.getBoardTypeList();
+		
 		model.addAttribute("pm", pm);
 		model.addAttribute("list", list);
+		model.addAttribute("typeList", typeList);
 		return "/board/list";
 	}
 	
 	@GetMapping("/insert")
-	public String insert(Model model, Integer bo_ori_num) {
+	public String insert(Model model, Integer bo_ori_num, HttpSession session) {
+		//로그인한 회원이 작성 가능한 게시판 타입을 가져와야 함.
+		//로그인한 회원 정보 
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		
+		List<BoardTypeVO> typeList = boardService.getBoardTypeList(user);
+			
 		model.addAttribute("bo_ori_num", bo_ori_num == null ? 0 : bo_ori_num);
+		model.addAttribute("typeList", typeList);
 		return "/board/insert";
 	}
 	@PostMapping("/insert")
@@ -121,4 +135,5 @@ public class BoardController {
 		map.put("board", board);
 		return map;
 	}
+	
 }

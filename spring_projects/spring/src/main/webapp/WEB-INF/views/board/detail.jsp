@@ -200,7 +200,7 @@
 	
 	
 	$(document).on('click', '.btn-comment-update', function(){
-		let commentBox = $(thiㅊㄹs).parents('.comment-box')
+		let commentBox = $(this).parents('.comment-box')
 		changeBox(commentBox);
 	})
 	$(document).on('click', '.btn-update-complete',function(){
@@ -215,6 +215,7 @@
 	getCommentList(cri);
 	
 	
+	}
 	function revertBox(){
 		$('[name=co_contents]').remove();
 		$('.btn-update-complete').remove();

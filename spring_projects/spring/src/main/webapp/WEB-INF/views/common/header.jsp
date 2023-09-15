@@ -22,8 +22,22 @@
 	      <a class="nav-link" href="<c:url value='/member/logout'/>">로그아웃</a>
 	    </li>
     </c:if>
-    	<li class="nav-item">
-	      <a class="nav-link" href="<c:url value='/board/list'/>">게시판</a>
+    <li class="nav-item">
+      <a class="nav-link" href="<c:url value='/board/list'/>">게시판</a>
+    </li>
+    
+    <c:if test="${user != null && user.me_role == 'ADMIN' }">
+	    <li class="nav-item dropdown">
+	      <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+	        관리자
+	      </a>
+	      <div class="dropdown-menu">
+	        <a class="dropdown-item" href="<c:url value='/admin/board/type'/>">게시판 타입 관리</a>
+	      </div>
 	    </li>
+    </c:if>
+    <li class="nav-item">
+      <a class="nav-link" href="<c:url value='/mail'/>">메일 보내기 테스트</a>
+    </li>
   </ul>
 </nav>

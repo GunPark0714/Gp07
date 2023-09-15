@@ -8,18 +8,27 @@
 <body>
 	<h1>게시판</h1>
 	<form action="" method="get">
-	 <div class="input-group mb-3">
-	    <div class="input-group-prepend">
-	    	<select class="form-control" name="type">
-	      <option value="0" <c:if test="${pm.cri.type == '0' }">selected</c:if>>전체</option>
-	      <option value="bo_title"<c:if test="${pm.cri.type == 'bo_title' }">selected</c:if>>제목</option>
-	      <option value="bo_contents"<c:if test="${pm.cri.type == 'bo_contents' }">selected</c:if>>내용</option>
-	   	 </select>
+		<div class="form-group">
+			<select class="form-control" name="bt_num">
+				<option value="0">전체</option>
+				
+				<c:forEach items="${typeList }" var="type">
+					<option value="${type.bt_num}" <c:if test="${pm.cri.bt_num == type.bt_num }">selected</c:if>>${type.bt_title }</option>
+				</c:forEach>
+			</select>
+		</div>
+	  <div class="input-group mb-3">
+	  	<div class="input-group-prepend">
+		    <select class="form-control" name="type">
+		      <option value="0" <c:if test="${pm.cri.type == '0' }">selected</c:if>>전체</option>
+		      <option value="bo_title" <c:if test="${pm.cri.type == 'bo_title' }">selected</c:if>>제목</option>
+		      <option value="bo_contents" <c:if test="${pm.cri.type == 'bo_contents' }">selected</c:if>>내용</option>
+		    </select>
 	    </div>
 	    <input type="text" class="form-control" name="search" value="${pm.cri.search}">
 	    <button class="btn btn-outline-success">검색</button>
-	 </div>
-</form>
+	  </div>
+	</form>
 	<table class="table table-hover">
     <thead>
       <tr>
@@ -36,8 +45,9 @@
 	        <td>${board.bo_num}</td>
 	        <td>
 	        	<a href="<c:url value='/board/detail${pm.cri.currentUrl}&bo_num=${board.bo_num}'/>">
-	        	<c:if test="${board.bo_num != board.bo_ori_num }"><span style="color:red">답글 : <span></span></c:if>
-	        	${board.bo_title}(${board.bo_comment })</a>
+	        	<c:if test="${board.bo_num != board.bo_ori_num }"><span style="color:red">답글 : </span></c:if>
+	        	${board.bo_title}(${board.bo_comment })
+	        	</a>
 	        </td>
 	        <td>${board.bo_me_id }</td>
 	        <td>${board.bo_views }</td>
@@ -65,5 +75,12 @@
     </c:if>
   </ul>
   <a class="btn btn-outline-danger" href="<c:url value='/board/insert'/>">글쓰기</a>
+  <script type="text/javascript">
+  	$('[name=bt_num]').change(function(){
+  		let bt_num = $(this).val();
+  		location.href = '<c:url value="/board/list?bt_num="/>'+ bt_num;
+  	});
+  </script>
+  ${pm.cri}
 </body>
 </html>
